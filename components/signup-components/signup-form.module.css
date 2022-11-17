@@ -1,0 +1,46 @@
+.maindiv {
+  width: 40rem;
+  margin: 6rem auto;
+  text-align: center;
+  background-color: rgba(60, 60, 60, 0.2);
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.signupform label {
+  display: inline-block;
+  width: 15rem;
+  text-align: left;
+}
+.signupform div {
+  margin: 1rem 0;
+}
+
+.signupform input {
+  width: 15rem;
+  height: 1.5rem;
+}
+.signupform input:hover {
+  background-color: var(--input-hover-backroung-color);
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem !important;
+}
+
+.buttons button {
+  margin: 0 4rem 0 0;
+  padding: 0.2rem 1.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.buttons button:hover {
+  background-color: var(--button-hover-background-color);
+  color: var(--button-hover-font-color);
+  cursor: pointer;
+}

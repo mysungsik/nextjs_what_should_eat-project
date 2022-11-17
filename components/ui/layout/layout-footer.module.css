@@ -1,0 +1,33 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  align-items: center;
+}
+
+.footer ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  align-items: center;
+}
+
+.footer li {
+  margin: 0 2rem;
+}
+
+.contact {
+  display: flex;
+}
+.contact div {
+  margin: 0 1rem;
+}
+
+.contact img {
+  background-color: white;
+  border-radius: 40px;
+  padding: 0.3rem;
+}

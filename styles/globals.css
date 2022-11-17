@@ -1,9 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Hahmlet&display=swap");
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: white;
+  background-image: url("/image/main-background/lidye-1Shk_PkNkNw-unsplash.jpg");
+  background-size: cover;
+  padding: 0.25rem 1rem;
+  font-family: "Hahmlet", serif;
+  color: white;
+
+  --button-hover-background-color: rgb(132, 132, 132);
+  --button-hover-font-color: rgb(231, 231, 231);
+  --input-hover-backroung-color: rgb(210, 210, 210);
 }
 
 a {
@@ -17,10 +29,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
   }
 }
