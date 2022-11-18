@@ -1,6 +1,18 @@
 .notification {
-  margin: 0 auto;
-  width: 50%;
+  width: 100%;
   text-align: center;
-  background-color: black;
+}
+
+.notification div {
+  width: 100%;
+}
+
+.error {
+  background-color: red !important;
+}
+.pending {
+  background-color: brown !important;
+}
+.success {
+  background-color: green !important;
 }

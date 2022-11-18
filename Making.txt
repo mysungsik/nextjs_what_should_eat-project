@@ -1,25 +1,291 @@
+[ 페이지 기능 구성 ] ========================================
+
+로그인, 회원가입
+
+뭐먹지 - 카테고리별 (다이어트, 한식, 양식, 중식, 디저트)
+         태그별 ( 매콤, 짭잘, 달달 )
+         고급 ( 파인다이닝 메뉴, 비싼 고기 등...)
+
+
+
+    * 주요기능
+
+        1. 칼로리계산기
+        2. 회원가입 후, "내 음식" 페이지
+-       3. 뭐먹지 - 모든 음식 [카테고리별 정리 *** ]
+
+        3-1. 뭐먹지 - 모든 음식 - "내 음식" 안에 담기
+
+        4. 뭐먹지 - 랜덤 골라주기  (기본적으로, 모든 데이터로 , ** 만약, 로그인을 했다면 , "내 음식" 안에서만 랜덤 골라주기 가능 )
+
+        ** 음식 저장시 [음식id, 음식이름, 평균가격, 맛태그, 고급 or not, 카테고리]
+
+        ** 음식 카테고리 [ 다이어트, 한식, 양식, 일식, 베트남식, 중식, 디저트 ] 
+        ** 음식 태그구성 [ 매콤, 짭짤, 달달, 삼삼, 씁쓸]
+        ** 음식 고급구성 [ 고급 or 일반 ]
+        ** 음식 정보구성 [ 칼로리, 영양성분 ]
+
+
+[ 코드 기능 구성 ] ================================
+
+1. 사용 언어
+    javascript, react, nextjs
+
+2. MODAL UI
+    react-bootstrap
+    https://react-bootstrap.github.io/getting-started/introduction/
+
+3. 로그인 기능
+    next-auth
+
+        credentials provider = https://next-auth.js.org/providers/credentials
+        _app.js sessionprovider = https://next-auth.js.org/getting-started/client#sessionprovider
+        useSession = https://next-auth.js.org/getting-started/client#sessionprovider
+        getSession
+        signIn
+        signOut
+
+
+
+
+
+[ 메이킹 인덱스 ] ==================================================
+
 1. Layout, footer 작업 부터
 
 2. 로그인 페이지 생성, 회원가입 페이지 생성
 
 3. MongoDb 연결
 
-4. 회원가입 api 까진 완료
+4. 회원가입 api + [npm i bcrypt]
 
 5. useState 로, 회원가입시 [전송중, 성공, 실패] notification 화면 안에 표시 (context X)  
-    ==> 현재 작업중
 
-6. next-auth 로 로그인 기능 구현
+6. signup validation 작성
 
+7. 추가적으로, "MODAL" 사용하여,  회원가입 성공하면, 바로 로그인 페이지로 넘어가게
+
+8. 로그인 기능 구현
+    1) "finduserinfo" helper 함수를 만든다.
+    2) /api/auth/[...nextauth].js 에 authOptions 를 통해, credentials provider 를 선택하여, auth validation 을 작성한다.  
+    3) signIn, signOut 을 구현한다.
+
+9. 로그인 페이지, validation 구현 및 validation 에 따른, 유저 표시 구현
+
+10. 로그아웃 구현
+
+12. 라우터 보호 구현, API 보호 구현
+
+    1) 클라이언트 1차 보호 : 버튼 숨기기
+
+            {status === "unauthenticated" && (
+                <li>
+                <Link href={"/login"}> 로그인</Link>
+                </li>
+            )}
+
+
+    2) 클라이언트 2차 보호 : 들어가면 튕겨나가게하기
+
+        <컴포넌트 함수 안에>
+            if (status === "loading") {
+                return <div>...loading</div>;
+            }
+            if (status === "authenticated") {
+                router.replace("/");
+            }
+
+    3) API 보호 : 아무나 못 접근하게
+
+        <API 안의 handler function 안에>
+            const session = await getSession({ req: req });
+
+            if (!session) {
+            res.status(401).json({ message: "not authenticated" });
+            return;
+            }
+        
+
+13. 컨텍트 페이지 구현
+
+14. 컨텍트 validation, 로그인 validation, 회원가입 validation 완벽하게 구현
+        
+    회원가입 : "같은 이메일 있는지", 요상한 문자로 가입하지 않았는지
+
+    로그인 : ==> next-auth 에서, validation 관리
+
+    컨텍트 : 요상한 문자를 적지는 않았는지? 어떻게...? 확인하지?
+
+===========================================================================================================
+    <여기부터! 기능측면 시작>
+
+15. 홈페이지 구현
+        : 전체 삼등분 // 삼각형 형태로 위두개, 아래한개 => 뭐먹지?(음식들- 카테고리별정리한), 랜덤 선택기, 고오급 음식
+            or 슬라이드로 넘어가게 한줄로 촥촥, 해서 3개 =>  뭐먹지?(음식들- 카테고리별정리한), 랜덤 선택기, 고오급 음식
+
+    슬라이드 : swiper 사용
+    https://swiperjs.com/react#usage
+
+    드롭다운 : 
+        1. < layout-dropdown.js > 만들고
+        2. < layout-dropdown.module.css > 만들고
+
+        3. onMouseOver, onMouseLeave 를 통해, state 를 바꿔, 드롭다운메뉴 조정
+
+            const [show, setShow] = useState(false);
+
+            function showDropDown() {
+            setShow((prev) => !prev);
+            }
+
+            <button onMouseOver={showDropDown}>뭐먹지</button>
+            <div onMouseLeave={showDropDown}>{show && <DropDown />}</div>
+
+
+16. 음식들 구현
+
+        대안1.  좌측으로 일자로- 카테로리 촥
+           그 카테고리 누르면, 카테고리 해당되는 음식들이 우측에, 카드형식으로 촥
+
+            "마치, 무인계산기 처럼"
+
+
+        대안2. HEADER 처럼 위에, 카테고리 촥
+            그 카테고리 누르면, 카테리고리 해당되는 음식들이 하단으로 촥! 카드형식으로
+
+    
+        ** 어쨋거나, "페이지네이션을 필수일듯"
+        아니면 길게 쭉쭉, SCROLL 로 도 가능
+
+17. 음식들 정보도 잘 저장
+
+18. 각 음식들마다 ["내 음식" 에 담기기능 추가]
+
+19. 랜덤 음식 선택기 추가 "모션은.. 어떻게하지?"
 
 
 
 [새로 알게된 것] ===================================================
 
-[복습 및 까먹엇던것]===============================================
+1. react bootstrap
+    https://react-bootstrap.github.io/
+
+2. swiper
+    https://swiperjs.com/react#usage
+        homepage-slide.js
+        homepage-slide.module.css
+
+3. 미우스오버 효과 onMouseOver, onMouseOut, onMouseLeave 아주좋군..! ...
+
+4. 드롭다운 메뉴 구성하기
+
+[복습 및 까먹엇던것 및 실수]===============================================
+
+1. style 에 관하여. ["따옴표가 없음을 명심~!"]
+
+        let sedingStyle;
+
+        if (state === "pending") {
+=           sedingStyle = styles.pending;
+        }
+        if (state === "error") {
+-           sedingStyle = styles.error;
+        }
+        if (state === "success") {
+=           sedingStyle = styles.success;
+        }
+
+        return (
+            <div className={styles.notification}>
+            <div className={sedingStyle}>
+
+2. postion absoulte 가운데 정렬
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+3. next-auth 의 authOptions 코드에 관하여
+
+    < credentials provider 일때, session 옵션 까먹지 말자>
+    session: {
+        jwt: true,
+    },
+
+4. next-auth 의 signIn 에 관하여
+
+    당연히 그냥 쓰면 안되고, function에 넣어서, 
+    preventDefault 도 사용하고 나서,
+
+    signIn 안에, [첫번재 옵션에] "어떤 provider 썼는지" , [두번째 옵션인 객체 안]에, 
+    "redirect 설정", 
+    "provider 만들때, auth 에 사용할 credentials 안에 들어갈 변수들"
+    을 넣어 주어야 provider 측에서, auth validation 으로, validation 이 가능하다.
+
+    redirect 를 설정하고 싶다면, { callbackUrl: '/'  } 으로, URL 설정을 해줄 수 도 있다.
+
+    
+    const result = await signIn("credentials", {
+        redirect: false,
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      });
+
+5. next-auth 의 클라이언트 API 보호에 관하여
+
+    1) 클라이언트 1차 보호 : 버튼 숨기기
+
+        {status === "unauthenticated" && (
+            <li>
+            <Link href={"/login"}> 로그인</Link>
+            </li>
+        )}
+
+
+    2) 클라이언트 2차 보호 : 들어가면 튕겨나가게하기
+
+        <컴포넌트 함수 안에>
+            if (status === "loading") {
+                return <div>...loading</div>;
+            }
+            if (status === "authenticated") {
+                router.replace("/");
+            }
+
+    3) API 보호 : 아무나 못 접근하게
+
+        <API 안의 handler function 안에>
+            const session = await getSession({ req: req });
+
+            if (!session) {
+            res.status(401).json({ message: "not authenticated" });
+            return;
+            }
+
+6. useRef 가 아닌 useState 로 값을 뽑기 (값을 자유자재로 다루기 위함)
+
+        const [email, setEmail] = useState()
+
+        <input type={"email"} id={"email"} required value={email} onChange={(e) => setEmail(e.target.value)}
+
+
+    [DOM 에 접근하는 것 (event.target.value) 이 중유하다 ]
+
+-       *** onChange={(e)=>setEmail(e.target.value)}
 
 [하고싶은것]==========================================================================================
 
 1. header 에 손대면, 툭 튀어나오는 ...
 
 2. media query 싹다 만들기
+
+[수정할것] =================================================
+
+0. 미디어쿼리 싹다 만들기 [마지막에]
+
+0. Meta 의 header 전부 추가하기
+
+1. notification css 수정하기
+    : 자꾸 화면 움직이게 만듬 => absolute 로 방해 안되게하기

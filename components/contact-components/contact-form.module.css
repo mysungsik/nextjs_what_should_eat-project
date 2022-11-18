@@ -1,0 +1,44 @@
+.maindiv {
+  width: 40rem;
+  text-align: center;
+  margin: 3rem auto;
+}
+
+.contactForm label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.infoDiv {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.infoDiv input {
+  width: 15rem;
+  height: 1.5rem;
+  padding: 0.25rem;
+  margin: 0 1rem;
+  font-family: inherit;
+}
+.infoDiv label {
+  margin-left: 1rem;
+}
+.contentDiv {
+  margin: 0 auto;
+  width: 80%;
+  margin-bottom: 1rem;
+}
+.contentDiv label {
+  text-align: left;
+}
+.contentDiv textarea {
+  width: 100%;
+  resize: none;
+  padding: 0.5rem;
+  font-family: inherit;
+}

@@ -2,7 +2,7 @@
   width: 40rem;
   margin: 6rem auto;
   text-align: center;
-  background-color: rgba(60, 60, 60, 0.2);
+  background-color: var(--maindiv-background-color-trans2);
   padding: 2rem;
   border-radius: 20px;
 }
@@ -43,4 +43,11 @@
   background-color: var(--button-hover-background-color);
   color: var(--button-hover-font-color);
   cursor: pointer;
+}
+
+.maindiv input::placeholder {
+  color: rgb(76, 76, 76, 0.5);
+  font-family: inherit;
+  font-size: 0.5rem;
+  text-align: center;
 }

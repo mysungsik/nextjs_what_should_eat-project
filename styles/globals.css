@@ -15,7 +15,13 @@ body {
 
   --button-hover-background-color: rgb(132, 132, 132);
   --button-hover-font-color: rgb(231, 231, 231);
+
   --input-hover-backroung-color: rgb(210, 210, 210);
+
+  --maindiv-background-color-trans2: rgba(60, 60, 60, 0.2);
+  --maindiv-background-color-trans4: rgba(60, 60, 60, 0.4);
+  --maindiv-background-color-trans6: rgba(60, 60, 60, 0.6);
+  --maindiv-background-color: rgb(49, 49, 49);
 }
 
 a {

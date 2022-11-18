@@ -1,0 +1,15 @@
+.button {
+  margin: 0 4rem 0 0;
+  padding: 0.2rem 1.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.button:hover {
+  background-color: var(--button-hover-background-color);
+  color: var(--button-hover-font-color);
+  cursor: pointer;
+}
