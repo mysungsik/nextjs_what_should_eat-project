@@ -36,3 +36,21 @@ export async function contactHandler(client, data) {
     .insertOne(data);
   return insertResult;
 }
+
+export async function addingHandler(client, data) {
+  const insertResult = await client
+    .db("eating")
+    .collection("foodInfo")
+    .insertOne(data);
+  return insertResult;
+}
+
+export async function findAllFoods(client) {
+  const findResult = await client
+    .db("eating")
+    .collection("foodInfo")
+    .find({})
+    .toArray();
+
+  return findResult;
+}

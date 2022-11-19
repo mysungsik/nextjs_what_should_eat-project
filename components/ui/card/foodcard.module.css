@@ -1,0 +1,7 @@
+.foodcard {
+  width: 15rem;
+  height: 20rem;
+  box-shadow: 3px 3px 15px rgb(156, 156, 156);
+  text-align: center;
+  background-color: black;
+}

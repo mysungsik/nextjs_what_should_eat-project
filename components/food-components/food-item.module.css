@@ -1,0 +1,13 @@
+.imagediv img {
+  object-fit: cover;
+  width: 100%;
+  height: 12rem;
+}
+
+.imagediv h3 {
+  margin: 0;
+}
+
+.foodinfodiv p {
+  margin: 0;
+}

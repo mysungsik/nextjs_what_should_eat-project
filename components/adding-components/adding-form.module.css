@@ -1,0 +1,30 @@
+.maindiv {
+  width: 60rem;
+  text-align: center;
+  margin: 3rem auto;
+}
+.maindiv div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.maindiv label {
+  display: block;
+  width: 10rem;
+  align-items: center;
+}
+
+.maindiv input {
+  width: 23rem;
+  height: 1.8rem;
+}
+
+.maindiv textarea {
+  width: 23rem;
+  resize: none;
+}
+.buttonsdiv {
+  justify-content: flex-end;
+}

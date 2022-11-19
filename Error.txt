@@ -1,0 +1,19 @@
+1. [ db 에서 값을 가져올때, "직렬화(serializing)" 에 대한 문제가 발생한다.]
+
+    <에러코드>
+        error - SerializableError: Error serializing `.allfoods[0]._id` returned from `getStaticProps` in "/allfoods".
+        Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+
+    <해결>
+
+        export async function getStaticProps() {
+            const client = await connectDb();
+            const allFoods = await findAllFoods(client);
+        
+            return {
+-               props: { allfoods: JSON.parse(JSON.stringify(allFoods)) },
+            };
+        }
+
+        ==> stringify 로 "json 데이터로 바꾸고"
+        ==> parse 로 "다시 자바스크립트 언어로 바꿔서, 써라"

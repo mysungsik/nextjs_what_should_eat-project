@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   color: white;
+  padding: 0 3rem;
 }
 
 .header ul {
@@ -23,7 +24,7 @@
 
 .header button {
   font-family: inherit;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
   color: white;
   font-size: 1rem;
   border: none;

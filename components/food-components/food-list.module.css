@@ -1,0 +1,13 @@
+.ul {
+  list-style: none;
+  padding: 0 3rem;
+  margin-bottom: 10rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+
+.ul li {
+  margin: 1rem 2rem;
+  width: fit-content;
+}

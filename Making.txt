@@ -18,12 +18,12 @@
 
         4. 뭐먹지 - 랜덤 골라주기  (기본적으로, 모든 데이터로 , ** 만약, 로그인을 했다면 , "내 음식" 안에서만 랜덤 골라주기 가능 )
 
-        ** 음식 저장시 [음식id, 음식이름, 평균가격, 맛태그, 고급 or not, 카테고리]
+        ** 음식 저장시 [id, name, price, taste , category, fancy, calorie]
 
-        ** 음식 카테고리 [ 다이어트, 한식, 양식, 일식, 베트남식, 중식, 디저트 ] 
-        ** 음식 태그구성 [ 매콤, 짭짤, 달달, 삼삼, 씁쓸]
-        ** 음식 고급구성 [ 고급 or 일반 ]
-        ** 음식 정보구성 [ 칼로리, 영양성분 ]
+        ** 음식 카테고리 [ 다이어트 , 한식 , 양식 , 일식 , 베트남 , 중식 , 디저트 ] 
+        ** 음식 맛구성  [ 매콤  ,달달 , 짭짤, 삼삼, 새콤 , 씁쓸]
+        ** 음식 고급구성 [ true or false ]
+        ** 음식 정보구성 [ 칼로리, 영양성분(탄단지) ]
 
 
 [ 코드 기능 구성 ] ================================
@@ -45,6 +45,9 @@
         signIn
         signOut
 
+4. 슬라이더 swiper
+
+5. 
 
 
 
@@ -121,12 +124,12 @@
 
 15. 홈페이지 구현
         : 전체 삼등분 // 삼각형 형태로 위두개, 아래한개 => 뭐먹지?(음식들- 카테고리별정리한), 랜덤 선택기, 고오급 음식
-            or 슬라이드로 넘어가게 한줄로 촥촥, 해서 3개 =>  뭐먹지?(음식들- 카테고리별정리한), 랜덤 선택기, 고오급 음식
+        : "OR" 슬라이드로 넘어가게 한줄로 촥촥, 해서 3개 =>  뭐먹지?(음식들- 카테고리별정리한), 랜덤 선택기, 고오급 음식
 
-    슬라이드 : swiper 사용
-    https://swiperjs.com/react#usage
+    "슬라이드" : swiper 사용
+        https://swiperjs.com/react#usage
 
-    드롭다운 : 
+    "드롭다운" : 
         1. < layout-dropdown.js > 만들고
         2. < layout-dropdown.module.css > 만들고
 
@@ -135,14 +138,23 @@
             const [show, setShow] = useState(false);
 
             function showDropDown() {
-            setShow((prev) => !prev);
+                setShow(true);
             }
+            
+            function closeDropDown() {
+                setShow(false);
+            }  
+                ...
 
-            <button onMouseOver={showDropDown}>뭐먹지</button>
-            <div onMouseLeave={showDropDown}>{show && <DropDown />}</div>
+            <li className={styles.li} onMouseOver={showDropDown}>
+                <div onMouseLeave={closeDropDown}>
+                뭐먹지
+                {show && <DropDown />}
+                </div>
+            </li>
 
 
-16. 음식들 구현
+16. 음식들 구현 <allfoods.js>
 
         대안1.  좌측으로 일자로- 카테로리 촥
            그 카테고리 누르면, 카테고리 해당되는 음식들이 우측에, 카드형식으로 촥
@@ -157,12 +169,72 @@
         ** 어쨋거나, "페이지네이션을 필수일듯"
         아니면 길게 쭉쭉, SCROLL 로 도 가능
 
-17. 음식들 정보도 잘 저장
+    "food item", "food list", "food category-header"
 
-18. 각 음식들마다 ["내 음식" 에 담기기능 추가]
+17. 카테고리 별로 정리되게 만들기
 
-19. 랜덤 음식 선택기 추가 "모션은.. 어떻게하지?"
+    < food-category-header.js > ====================================
 
+        function FoodCategoryHeader(props) {
+            const { foodData } = props;
+            const [insertFoodData, setInsertFoodData] = useState(foodData);
+            
+                ...
+
+            function foodFilter(category) {
+                const filteredFoods = foodData.filter((food) => food.category === category);
+            
+                setInsertFoodData(filteredFoods);
+            }
+                ...
+
+            <ul className={styles.ul}>
+                <li onClick={() => setInsertFoodData(foodData)}>전체</li>
+                <li onClick={() => foodFilter("diet")}> 다이어트 </li>
+                <li onClick={() => foodFilter("korean")}> 한식 </li>
+                <li onClick={() => foodFilter("western")}> 양식</li>
+
+        ========================================================================        
+
+    ** keyPoint : "만든 함수에 파라미터를 넣었으면"
+                    " onClick 해서 실행할때, callback 함수 형태로 넣어주어야"
+                        onClick={ ()=> function("파라미터")}
+                    " useState 무한루프에 빠지는 것을 막을 수 있다."
+
+                    만약, onClick={ function("파라미터")} 형태로, callback 없이 적으면
+                    click 할때가아니고, "무한대로, useState 가 실행되어, 무한루프에 빠진다."
+
+18. 음식 상세정보 페이지 만들기
+
+    => 대충 넣어두었음.
+    => Db에서 가져와야 하므로, Db 에 추가 기능부터 만들어서, Db 에 차곡차곡 쌓고, API 만들어서 채울것
+
+19. 음식들 정보도 잘 저장 [DB에 저장] ==> ADMIN 만들어서, "추가" 가능하게 만들기
+
+    <작업할것>
+        1.[OK]  저장 완성했으니, allfoods 에 data Db 것으로 바꾸기,     
+
+        2.[OK]  adding page 에서, getStaticProps 로, find 한 값을 받아와, 갯수를 adding form 에 넣어주어,
+                adding form 에 총 음식번호가 몇번까지 되어있는지 옆에 써주게 만들기                                 
+
+        3.  login 해서 adding page 에는, admin 유저 email 을 가지고 있는 사람만 출입 가능하게 만들기
+            useSession 으로, user email 빼서, admin@test.com 아니면 쫓아내
+
+            API도, admin@test.com 아니면 쫓아내 [authenticated && admin@test.com]
+ 
+* 저장시 alt 도 넣어서, Image 태그 안에 넣어주자 자꾸 오류메시지 보기 싫다 [OK]
+
+20. 음식 디테일 페이지 만들어서 ADMIN은 "수정", "삭제" 가능하게 만들기
+
+21. 각 음식들마다 ["내 음식" 에 담기기능 추가]
+
+22. 개인 페이지 만들기
+    : "내정보"
+    : "내 음식"
+
+    두가지 포함되는
+
+21. 랜덤 음식 선택기 추가 "모션은.. 어떻게하지?"
 
 
 [새로 알게된 것] ===================================================
@@ -178,6 +250,36 @@
 3. 미우스오버 효과 onMouseOver, onMouseOut, onMouseLeave 아주좋군..! ...
 
 4. 드롭다운 메뉴 구성하기
+
+    1. < dropdown component 는 알아서 만들것>
+
+    2.  "드롭다운 동작 구현"
+
+        const [show, setShow] = useState(false);
+
+        function showDropDown() {
+            setShow(true);
+        }
+
+        function closeDropDown() {
+            setShow(false);
+        }  
+            ...
+
+        <li className={styles.li} onMouseOver={showDropDown}>
+            <div onMouseLeave={closeDropDown}>
+            뭐먹지
+            {show && <DropDown />}
+            </div>
+        </li>
+
+5. Grid, 자동으로 colum 갯수 맞춰주기 [repeat, auto-fill, mixmax("xx" rem, 1fr)]
+
+            display: grid;
+-           grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+            gap: 1rem;
+        }
+
 
 [복습 및 까먹엇던것 및 실수]===============================================
 
@@ -275,6 +377,9 @@
 
 -       *** onChange={(e)=>setEmail(e.target.value)}
 
+7. [css] img 조정, object-fit
+
+
 [하고싶은것]==========================================================================================
 
 1. header 에 손대면, 툭 튀어나오는 ...
@@ -289,3 +394,9 @@
 
 1. notification css 수정하기
     : 자꾸 화면 움직이게 만듬 => absolute 로 방해 안되게하기
+
+2. MODAL 재사용할거면, props 로 값을 넘겨주는게 중요
+
+3. ADMIN 만들어서, "추가", "수정", "삭제" 가능하게 만들기
+
+4. ** Db 에서 끌어와서 값을 넣어줄 때에는, 반드시, allfoods Page에서, getStaticProps 를 통해, 끌어오자

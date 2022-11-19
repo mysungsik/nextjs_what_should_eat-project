@@ -4,7 +4,7 @@ import styles from "./layout-dropdown.module.css";
 function DropDown() {
   return (
     <ul className={styles.dropdown}>
-      <Link href={"/"}>
+      <Link href={"/allfoods"}>
         <li>카테고리별</li>
       </Link>
       <Link href={"/"}>

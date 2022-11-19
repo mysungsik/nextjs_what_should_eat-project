@@ -10,7 +10,11 @@ function LayoutHeader(props) {
   const [show, setShow] = useState(false);
 
   function showDropDown() {
-    setShow((prev) => !prev);
+    setShow(true);
+  }
+
+  function closeDropDown() {
+    setShow(false);
   }
 
   function signoutFunction() {
@@ -32,9 +36,11 @@ function LayoutHeader(props) {
             <Link href={"/login"}> 로그인</Link>
           </li>
         )}
-        <li className={styles.li}>
-          <button onMouseOver={showDropDown}>뭐먹지</button>
-          <div onMouseLeave={showDropDown}>{show && <DropDown />}</div>
+        <li className={styles.li} onMouseOver={showDropDown}>
+          <div onMouseLeave={closeDropDown}>
+            뭐먹지
+            {show && <DropDown />}
+          </div>
         </li>
         <li className={styles.li}>
           <Link href={"/"}> 칼로리계산기</Link>

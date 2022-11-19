@@ -17,7 +17,7 @@ function HompageSlider() {
         onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide>
-          <Link href={"/"}>
+          <Link href={"/allfoods"}>
             <Image
               src={
                 "/image/homepage-slider/brooke-lark-wMzx2nBdeng-unsplash.jpg"
