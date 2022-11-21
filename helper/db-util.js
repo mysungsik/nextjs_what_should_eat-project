@@ -54,3 +54,12 @@ export async function findAllFoods(client) {
 
   return findResult;
 }
+
+export async function findFoodDetail(client, foodid) {
+  let findResult = await client
+    .db("eating")
+    .collection("foodInfo")
+    .findOne({ id: foodid });
+
+  return findResult;
+}

@@ -1,8 +1,10 @@
-import FoodCategoryHeader from "../components/food-components/food-category-header";
-import { connectDb, findAllFoods } from "../helper/db-util";
+import FoodCategoryHeader from "../../components/food-components/food-category-header";
+import { connectDb, findAllFoods } from "../../helper/db-util";
+
 
 function AllFoodsPage(props) {
   const { allfoods } = props;
+
   return <div>{<FoodCategoryHeader foodData={allfoods} />}</div>;
 }
 

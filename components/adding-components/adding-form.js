@@ -11,7 +11,7 @@ import { useState } from "react";
 
 function AddingForm(props) {
   let { allFoodsLength } = props;
-  let autoId = allFoodsLength + 1;
+  let autoId = String(allFoodsLength + 1);
   const [id, setId] = useState(autoId);
   const [name, setName] = useState();
   const [image, setImage] = useState();

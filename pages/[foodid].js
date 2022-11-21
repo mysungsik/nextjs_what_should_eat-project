@@ -1,13 +1,58 @@
+import { connectDb, findAllFoods } from "../helper/db-util";
+import FoodDetailForm from "../components/food-detail-components/food-detail-form";
+
 function FoodDetailPage(props) {
-  return <div>food 아이디는{props.foodid}</div>;
+  const { selectedFood } = props;
+
+  const {
+    id,
+    name,
+    image,
+    price,
+    taste,
+    category,
+    alt,
+    calorie,
+    nutri,
+    content,
+  } = selectedFood;
+  return (
+    <div>
+      <FoodDetailForm
+        id={id}
+        name={name}
+        image={image}
+        price={price}
+        taste={taste}
+        category={category}
+        alt={alt}
+        calorie={calorie}
+        nutri={nutri}
+        content={content}
+      />
+    </div>
+  );
 }
 
-export async function getServerSideProps(context) {
-  const { foodid } = context.params;
+export async function getStaticProps(context) {
+  let { foodid } = context.params;
 
-  // foodid 로, db에서 findOne 해와서, 값 넣어주면됌
+  const client = await connectDb();
+  let result = await findAllFoods(client);
+
+  let issue = JSON.parse(JSON.stringify(result)); // 직렬화 이슈를 피하는, 두번 변환
+
+  let selectedFood = issue.find((data) => data.id === foodid);
+
   return {
-    props: { foodid },
+    props: { selectedFood },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { foodid: "1" } }, { params: { foodid: "2" } }],
+    fallback: "blocking",
   };
 }
 

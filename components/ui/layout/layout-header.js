@@ -4,10 +4,17 @@ import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
 import DropDown from "./layout-dropdown";
+import UserDropDown from "./layout-user-dropdown";
 
 function LayoutHeader(props) {
   const { data: session, status } = useSession();
   const [show, setShow] = useState(false);
+  const [showUser, setShowUser] = useState(false);
+
+  let authenticatedId;
+  if (session) {
+    authenticatedId = session.user.email;
+  }
 
   function showDropDown() {
     setShow(true);
@@ -15,6 +22,13 @@ function LayoutHeader(props) {
 
   function closeDropDown() {
     setShow(false);
+  }
+
+  function showUserDropDown() {
+    setShowUser(true);
+  }
+  function hideUserDropDown() {
+    setShowUser(false);
   }
 
   function signoutFunction() {
@@ -28,6 +42,22 @@ function LayoutHeader(props) {
         </Link>
       </div>
       <ul>
+        {authenticatedId === "admin@admin.com" && (
+          <li>
+            <Link href={"/allfoods/adding"}> 추가페이지 </Link>
+          </li>
+        )}
+
+        {status === "authenticated" && authenticatedId !== "admin@admin.com" && (
+          <li onMouseOver={showUserDropDown}>
+            <div className={styles.userDropDown}>
+              반갑습니다 {session.user.email} 님!
+              <div onMouseOut={hideUserDropDown}>
+                {showUser && <UserDropDown />}
+              </div>
+            </div>
+          </li>
+        )}
         <li className={styles.li}>
           <Link href={"/"}> 홈페이지</Link>
         </li>

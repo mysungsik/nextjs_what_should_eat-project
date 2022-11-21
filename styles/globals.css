@@ -20,6 +20,7 @@ body {
   --maindiv-background-color-trans2: rgba(60, 60, 60, 0.2);
   --maindiv-background-color-trans4: rgba(60, 60, 60, 0.4);
   --maindiv-background-color-trans6: rgba(60, 60, 60, 0.6);
+  --maindiv-background-color-trans8: rgba(60, 60, 60, 0.8);
   --maindiv-background-color: rgb(49, 49, 49);
 }
 

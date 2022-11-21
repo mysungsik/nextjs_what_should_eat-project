@@ -214,25 +214,45 @@
     <작업할것>
         1.[OK]  저장 완성했으니, allfoods 에 data Db 것으로 바꾸기,     
 
-        2.[OK]  adding page 에서, getStaticProps 로, find 한 값을 받아와, 갯수를 adding form 에 넣어주어,
+        2.[OK]  adding page 에서, getStaticProps 로, find 한 값f을 받아와, 갯수를 adding form 에 넣어주어,
                 adding form 에 총 음식번호가 몇번까지 되어있는지 옆에 써주게 만들기                                 
 
-        3.  login 해서 adding page 에는, admin 유저 email 을 가지고 있는 사람만 출입 가능하게 만들기
+        3.[OK] login 해서 adding page 에는, admin 유저 email 을 가지고 있는 사람만 출입 가능하게 만들기
             useSession 으로, user email 빼서, admin@test.com 아니면 쫓아내
 
             API도, admin@test.com 아니면 쫓아내 [authenticated && admin@test.com]
+
+        4. [OK] adming 만, layout header 에 추가페이지 만들게하기
  
 * 저장시 alt 도 넣어서, Image 태그 안에 넣어주자 자꾸 오류메시지 보기 싫다 [OK]
 
-20. 음식 디테일 페이지 만들어서 ADMIN은 "수정", "삭제" 가능하게 만들기
+* context 를 만들어서, 음식등록기(addingpage) 에, 음식번호 자동으로 추가하도록 만들기 를 하려햤지만!!
+
+    createContext 와 useContext 는, (= react context)
+        서버측 코드에서 실행이 불가능 하므로, fetch 를 사용해서, api 를 통해 불러와야하는데,
+
+        그럴바에 그냥, adding component 에서, import 해서, 사용하는게, 메모리를 덜 잡아먹겠다
+
+    ==> 안함!
+
+
+20. 음식 디테일 페이지 만들어서 내 카트에 담기 가능하게 만들기
+
+    디테일 페이지는, getStaticProps, getStaticpaths 에서, callback 을 "blocking" 으로 할것, (매우매우 많을것이기 때문에)
+
+    ** 카트에 담는것은, FOODID 뿐
+
+    
+22. 개인 페이지 만들기
+: "내정보"
+: "내 음식"
+
+두가지 포함되는
+
+21. ADMIN 용 음식 페이지 만들어서,  "수정", "삭제" 가능하게
 
 21. 각 음식들마다 ["내 음식" 에 담기기능 추가]
 
-22. 개인 페이지 만들기
-    : "내정보"
-    : "내 음식"
-
-    두가지 포함되는
 
 21. 랜덤 음식 선택기 추가 "모션은.. 어떻게하지?"
 
@@ -379,7 +399,50 @@
 
 7. [css] img 조정, object-fit
 
+8. getSession 사용법
 
+    const session = await getSession({req:req});
+
+9. ENV 의 사용
+    
+    [next.config.js 의 조정]
+    
+        import {...} from "next/constants"
+
+        module.exports = (phase, { defaultConfig }) => {
+            if (phase === PHASE_DEVELOPMENT_SERVER) {
+              return {
+                env:{
+                    customKey: 'my-value',
+                    ...
+                }
+              }
+            }
+        }
+
+    [ 사용 ]
+        {process.env.customKey}
+
+10. context 를 만들어서, 음식등록기(addingpage) 에, 음식번호 자동으로 추가하도록 만들기 를 하려햤지만!!
+
+    createContext 와 useContext 는, (= react context)
+        서버측 코드에서 실행이 불가능 하므로, fetch 를 사용해서, api 를 통해 불러와야하는데,
+
+        그럴바에 그냥, adding component 에서, import 해서, 사용하는게, 메모리를 덜 잡아먹겠다
+    
+    ==> 안함!
+
+
+
+11. Array.push 에 관하여 *****
+
+    Array = [1,2,3,4]
+
+    ** const total = Array.push(5)
+
+        ==> console.log(total) = 5
+            console.log(Array) = [1,2,3,4,5]
+    
 [하고싶은것]==========================================================================================
 
 1. header 에 손대면, 툭 튀어나오는 ...
@@ -400,3 +463,6 @@
 3. ADMIN 만들어서, "추가", "수정", "삭제" 가능하게 만들기
 
 4. ** Db 에서 끌어와서 값을 넣어줄 때에는, 반드시, allfoods Page에서, getStaticProps 를 통해, 끌어오자
+
+5. 모든 FOOD들을, 여러번 DB에서 가져오면 안되니까, allfoods 에서 어차피 가져오는 FOOD의 LENGTH 를, CONTEXT 로 만들어서, ADDING 페이지에 쓸 수 있게하기
+    혹은!, allfoods 페이지 내에, adding 을 추가하든가.

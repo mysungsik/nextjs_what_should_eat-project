@@ -14,7 +14,7 @@
 .header li {
   margin: 0 1rem;
   display: flex;
-  justify-items: center;
+  justify-items: flex-end;
   transition: ease-in-out 0.1s;
 }
 
@@ -44,4 +44,12 @@
 
 .logout:hover {
   cursor: pointer;
+}
+
+.userDropDown {
+  display: grid;
+}
+
+.userDropDown div {
+  margin: 0 auto;
 }

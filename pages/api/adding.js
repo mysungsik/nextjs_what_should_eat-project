@@ -1,6 +1,13 @@
 import { addingHandler, connectDb } from "../../helper/db-util";
+import { getSession } from "next-auth/react";
 
 async function handler(req, res) {
+  const session = await getSession({ req: req });
+
+  if (session.user.email !== "admin@admin.com") {
+    res.json({ message: "you are not authenicated" });
+    return;
+  }
   if (req.method === "POST") {
     let client;
     try {
