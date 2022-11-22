@@ -8,9 +8,19 @@
 // 관심 음식 불러오기는 버튼누르면, 아래로 쭉 펼쳐지게 하기
 
 import FoodList from "../food-components/food-list";
+import styles from "./favorite-foods.module.css";
 
-function Favorites() {
-  return <FoodList foodData />;
+function Favorites(props) {
+  const { favorites } = props;
+
+  return (
+    <main className={styles.maindiv}>
+      <h1> 찜한 음식</h1>
+      <div>
+        <FoodList foodData={favorites} />
+      </div>
+    </main>
+  );
 }
 
 export default Favorites;

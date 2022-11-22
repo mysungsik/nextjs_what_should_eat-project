@@ -81,7 +81,7 @@ async function handler(req, res) {
 
 export default handler;
 
-// db에 넣는 로직은 완성했따.
+// db에 넣는 로직은 완성했다.
 
 //  추가되었는거 누르면, 삭제되었습니다 되게 만들고
 // "클라이언트로 넣은 값을 보내

@@ -63,3 +63,13 @@ export async function findFoodDetail(client, foodid) {
 
   return findResult;
 }
+
+export async function findAllFoodsForCalorie(client) {
+  const findResult = await client
+    .db("eating")
+    .collection("foodInfo")
+    .find({}, { name: 1, category: 1, calorie: 1 })
+    .toArray();
+
+  return findResult;
+}

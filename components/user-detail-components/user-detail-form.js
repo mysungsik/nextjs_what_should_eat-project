@@ -17,8 +17,6 @@ function UserDetailComponent(props) {
         <p> 아이디 {useremail}</p>
         <p>이름 {username}</p>
       </div>
-      <Button onClick={showToggle}> 관심음식 펼치기</Button>
-      {showFavorites && <Favorites />}
     </div>
   );
 }

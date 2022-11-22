@@ -7,7 +7,7 @@ function DropDown() {
       <Link href={"/allfoods"}>
         <li>카테고리별</li>
       </Link>
-      <Link href={"/"}>
+      <Link href={"/allfoods/tags"}>
         <li>태그별</li>
       </Link>
       <Link href={"/"}>

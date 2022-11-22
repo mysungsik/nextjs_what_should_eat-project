@@ -1,8 +1,10 @@
 import { connectDb, findAllFoods } from "../helper/db-util";
+import { findSameArray } from "../helper/userdetail-db-util";
 import FoodDetailForm from "../components/food-detail-components/food-detail-form";
+import { getSession } from "next-auth/react";
 
 function FoodDetailPage(props) {
-  const { selectedFood } = props;
+  const { selectedFood, isSameArray } = props;
 
   const {
     id,
@@ -29,14 +31,16 @@ function FoodDetailPage(props) {
         calorie={calorie}
         nutri={nutri}
         content={content}
+        isSameArray={isSameArray}
       />
     </div>
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let { foodid } = context.params;
 
+  // 선택된 음식 사전데이터페칭
   const client = await connectDb();
   let result = await findAllFoods(client);
 
@@ -44,15 +48,15 @@ export async function getStaticProps(context) {
 
   let selectedFood = issue.find((data) => data.id === foodid);
 
-  return {
-    props: { selectedFood },
-  };
-}
+  // 버튼 선택을 위한, 초기값 설정
 
-export async function getStaticPaths() {
+  const session = await getSession({ req: context.req });
+  const userEmail = session.user.email;
+
+  const isSameArray = await findSameArray(client, userEmail, foodid);
+
   return {
-    paths: [{ params: { foodid: "1" } }, { params: { foodid: "2" } }],
-    fallback: "blocking",
+    props: { selectedFood, isSameArray: !!isSameArray },
   };
 }
 

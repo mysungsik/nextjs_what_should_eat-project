@@ -1,0 +1,33 @@
+.maindiv {
+  display: flex;
+  text-align: center;
+}
+.maindiv ul {
+  list-style: none;
+  padding: 0;
+}
+
+.selector {
+  width: 20rem;
+  border: 1px solid white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.selector div {
+  border: 1px solid white;
+}
+.calculator {
+  width: 40rem;
+  border: 1px solid white;
+}
+
+.calculator ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.total {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  color: white;
+}

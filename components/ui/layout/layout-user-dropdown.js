@@ -9,7 +9,7 @@ function DropDown() {
       <Link href={"/userdetail/" + session.user.email}>
         <li>내 정보</li>
       </Link>
-      <Link href={"/"}>
+      <Link href={"/userdetail/favoritefoods"}>
         <li>내 음식</li>
       </Link>
       <Link href={"/"}>

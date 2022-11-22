@@ -49,12 +49,10 @@ function LayoutHeader(props) {
         )}
 
         {status === "authenticated" && authenticatedId !== "admin@admin.com" && (
-          <li onMouseOver={showUserDropDown}>
-            <div className={styles.userDropDown}>
-              반갑습니다 {session.user.email} 님!
-              <div onMouseOut={hideUserDropDown}>
-                {showUser && <UserDropDown />}
-              </div>
+          <li onMouseOver={showUserDropDown} className={styles.userDropDown}>
+            반갑습니다 {session.user.email} 님!
+            <div onMouseLeave={hideUserDropDown}>
+              {showUser && <UserDropDown />}
             </div>
           </li>
         )}
@@ -73,7 +71,7 @@ function LayoutHeader(props) {
           </div>
         </li>
         <li className={styles.li}>
-          <Link href={"/"}> 칼로리계산기</Link>
+          <Link href={"/calories"}> 칼로리계산기</Link>
         </li>
         <li className={styles.li}>
           <Link href={"contact"}> Contact</Link>

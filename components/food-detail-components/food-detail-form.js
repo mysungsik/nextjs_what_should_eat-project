@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./food-detail-form.module.css";
 import Button from "../ui/card/button";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 function FoodDetailForm(props) {
   const { data: session, status } = useSession();
@@ -16,7 +17,9 @@ function FoodDetailForm(props) {
     calorie,
     nutri,
     content,
+    isSameArray,
   } = props;
+  const [addingButton, setAddingButton] = useState(isSameArray);
 
   // API 로 보내줄 데이터는, email 과 foodid
   // API 에서는, 그것들을 db에서 뽑아 판단해, 적절한 조치를 취한다.
@@ -41,7 +44,8 @@ function FoodDetailForm(props) {
     });
 
     const responseData = await response.json();
-    console.log(responseData);
+
+    setAddingButton((prev) => !prev);
   }
 
   return (
@@ -91,7 +95,7 @@ function FoodDetailForm(props) {
         </div>
       </div>
       <div>
-        <Button onClick={saveToCart}> 추가</Button>
+        <Button onClick={saveToCart}> {addingButton ? "삭제" : "추가"}</Button>
       </div>
     </main>
   );
