@@ -1,6 +1,7 @@
 // 입력기능이 담긴 form
 import styles from "./caculate-selector.module.css";
 import { useState, useEffect } from "react";
+import Button from "../ui/card/button";
 
 function CaloireFoodSeletor(props) {
   const { foodData } = props;
@@ -52,7 +53,7 @@ function CaloireFoodSeletor(props) {
 
     let total = foodCalorie * quantity;
 
-    e.target.parentElement.children[3].children[0].value = total;
+    e.target.parentElement.children[3].children[0].value = Math.ceil(total);
 
     const alltotals = document.querySelectorAll(".total");
 
@@ -62,15 +63,17 @@ function CaloireFoodSeletor(props) {
     }
     let totalCalories = newArray.reduce((sum, current) => +sum + +current);
 
-    setTotalCalorie(totalCalories);
+    setTotalCalorie(Math.ceil(totalCalories));
   }
 
   return (
     <main className={styles.maindiv}>
       <section className={styles.selector}>
-        <h1> 선택기 </h1>
+        <h2> 선택기 </h2>
+        <hr></hr>
         <div>
           <h4> 카테고리</h4> {/* 1  카테고리 선택*/}
+          <hr></hr>
           <ul>
             <li onClick={() => filterFoodWithCategory("다이어트")}>다이어트</li>
             <li onClick={() => filterFoodWithCategory("한식")}>한식</li>
@@ -80,14 +83,16 @@ function CaloireFoodSeletor(props) {
             <li onClick={() => filterFoodWithCategory("중식")}>중식</li>
             <li onClick={() => filterFoodWithCategory("디저트")}>디저트</li>
           </ul>
+          <hr></hr>
         </div>
         <div>
           <h4> 음식 </h4>
+          <hr></hr>
 
           {/* 2.  카테고리를 선택해, filteredData 가 생겼다면, 그 하위 음식들 선택*/}
 
           {filteredData && (
-            <ul>
+            <ul className={styles.subSelector}>
               {sortedFoodData.map((food) => (
                 <li
                   key={food.id}
@@ -104,26 +109,29 @@ function CaloireFoodSeletor(props) {
 
       <section className={styles.calculator}>
         <h2> 계산기</h2>
+        <hr></hr>
         <div>
-          <ul>
+          <ul className={styles.calculatorHeader}>
             <li> 선택음식</li>
             <li> 섭취량 </li>
-            <li> 100g 당 칼로리</li>
-            <li> 섭취 칼로리</li>
+            <li> 칼로리/100g</li>
+            <li> 총 칼로리</li>
           </ul>
+          <hr></hr>
 
           {/* 3.  선택해놓은, 음식들의 데이터를 계산기에 생성*/}
           {foodInCalculator.map((food) => (
-            <ul key={food.id}>
+            <ul key={food.id} className={styles.calculatorFoodList}>
               <li>{food.name}</li>
               <input
                 type={"number"}
                 step={1}
                 defaultValue={0}
                 onChange={(e) => calculate(e)}
+                className={styles.quantity}
               />
               <li>
-                <input type={"number"} readOnly value={food.calorie} />
+                <input type={"number"} value={food.calorie} readOnly />
               </li>
               <li>
                 <input
@@ -136,10 +144,15 @@ function CaloireFoodSeletor(props) {
             </ul>
           ))}
           <hr />
-          <div>총 칼로리</div>
-          <input type={"number"} value={totalCalories} readOnly />
+          <h4>총 칼로리</h4>
+          <div className={styles.totalCalories}>
+            <input type={"number"} value={totalCalories} readOnly />
+            <span> Kcal</span>
+          </div>
         </div>
-        <button onClick={resetHandler}> 초기화 </button>
+        <div className={styles.buttondiv}>
+          <Button onClick={resetHandler}> 초기화 </Button>
+        </div>
       </section>
     </main>
   );

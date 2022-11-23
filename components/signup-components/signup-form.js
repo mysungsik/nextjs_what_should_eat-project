@@ -3,7 +3,7 @@ import Notification from "../ui/notification/notification";
 import Button from "../ui/card/button";
 import { useRef, useState } from "react";
 import { useRouter } from "next/router";
-import ModalUi from "../ui/modal/modal";
+import ModalUi from "../ui/modal/modal-for-signup";
 import { useSession } from "next-auth/react";
 
 function SignupForm() {

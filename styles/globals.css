@@ -4,6 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  padding-bottom: 3rem;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: white;
@@ -22,6 +23,7 @@ body {
   --maindiv-background-color-trans6: rgba(60, 60, 60, 0.6);
   --maindiv-background-color-trans8: rgba(60, 60, 60, 0.8);
   --maindiv-background-color: rgb(49, 49, 49);
+  --special-font-color: rgb(253, 255, 152);
 }
 
 a {
@@ -35,7 +37,10 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
+    padding: 0;
+    margin: 0;
   }
   body {
+    padding: 0;
   }
 }

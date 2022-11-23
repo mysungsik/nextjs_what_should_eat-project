@@ -1,55 +1,17 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  padding: 0 3rem;
+.headerForWeb {
+  display: block;
 }
 
-.header ul {
-  display: flex;
-  list-style: none;
+.headerForMobile {
+  display: none;
 }
 
-.header li {
-  margin: 0 1rem;
-  display: flex;
-  justify-items: flex-end;
-  transition: ease-in-out 0.1s;
-}
+@media (max-width: 780px) {
+  .headerForWeb {
+    display: none;
+  }
 
-.header li:hover {
-  transform: scale(1.1);
-}
-
-.header button {
-  font-family: inherit;
-  background-color: rgba(0, 0, 0, 0);
-  color: white;
-  font-size: 1rem;
-  border: none;
-}
-
-.header button:hover {
-  cursor: pointer;
-}
-
-.logout {
-  font-family: inherit;
-  background-color: black;
-  color: white;
-  font-size: 1rem;
-  border: none;
-}
-
-.logout:hover {
-  cursor: pointer;
-}
-
-.userDropDown {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
+  .headerForMobile {
+    display: block;
+  }
 }

@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import Layout from "../components/ui/layout/layout";
 import { SessionProvider } from "next-auth/react";
 
+
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>

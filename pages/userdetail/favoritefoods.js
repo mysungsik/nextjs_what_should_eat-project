@@ -34,7 +34,12 @@ export async function getServerSideProps(context) {
   const client = await connectDb();
   const allfoods = await findAllFoods(client);
   const favoriteFoodsData = await favoriteFoodArray(client, session.user.email);
-  const favoriteFoodsArray = favoriteFoodsData.foodArray;
+
+  let favoriteFoodsArray = [];
+
+  if (favoriteFoodsData) {
+    favoriteFoodsArray = favoriteFoodsData.foodArray; // favoriteFoodData 가 있다면, 그 안의 FoodArray 를 뽑아서, 새로운 Array 에 넣어주고
+  }
 
   let favorites = [];
 

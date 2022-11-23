@@ -1,7 +1,15 @@
 .foodcard {
   width: 15rem;
-  height: 20rem;
-  box-shadow: 3px 3px 15px rgb(156, 156, 156);
+  height: 22rem;
+  box-shadow: 1px 1px 3px rgba(172, 172, 172, 0.83);
   text-align: center;
-  background-color: black;
+  background-color: rgb(40, 40, 40);
+  border-radius: 10px;
+}
+
+@media (max-width: 780px) {
+  .foodcard {
+    width: 12rem;
+    height: 17.5rem;
+  }
 }

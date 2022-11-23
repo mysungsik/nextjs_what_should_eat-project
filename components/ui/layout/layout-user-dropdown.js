@@ -12,7 +12,7 @@ function DropDown() {
       <Link href={"/userdetail/favoritefoods"}>
         <li>내 음식</li>
       </Link>
-      <Link href={"/"}>
+      <Link href={"/userdetail/random"}>
         <li>랜덤 선택기</li>
       </Link>
     </ul>

@@ -1,6 +1,21 @@
 .maindiv {
   display: flex;
   text-align: center;
+  margin: 3rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.maindiv h4 {
+  margin: 0.5rem;
+}
+
+.maindiv h2 {
+  margin: 0;
+  padding: 0;
+  color: var(--special-font-color);
+}
+.maindiv li {
+  color: rgb(181, 181, 181);
 }
 .maindiv ul {
   list-style: none;
@@ -8,26 +23,92 @@
 }
 
 .selector {
-  width: 20rem;
-  border: 1px solid white;
+  width: 30%;
+  min-width: 15rem;
+  border-radius: 5px;
   padding: 1rem;
   text-align: center;
+  background-color: rgba(0, 0, 0, 0.767);
+  box-shadow: 1px 1px 10px rgba(86, 86, 86, 0.588);
+  margin-right: 0.5rem;
 }
 
-.selector div {
-  border: 1px solid white;
+.subSelector {
+  max-height: 20rem;
+  overflow-y: scroll;
 }
 .calculator {
-  width: 40rem;
-  border: 1px solid white;
+  padding: 1rem;
+  border-radius: 5px;
+  width: 70%;
+  min-width: 30rem;
+  background-color: rgba(0, 0, 0, 0.767);
+  box-shadow: 1px 1px 10px rgba(98, 98, 98, 0.588);
 }
 
 .calculator ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: rgba(0, 0, 0, 0.341);
+  border-radius: 5px;
+  padding: 0.25rem;
+  grid-template-columns: 20% 15% 30% 30%;
+}
+
+.calculatorHeader {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.calculatorHeader li {
+  color: white;
+  font-size: 1.1rem;
+}
+.calculatorFoodList {
+  height: 2.5rem;
+  padding: 0.5rem;
+  align-items: center;
+}
+.calculatorFoodList li {
+  display: flex;
+  justify-content: center;
+  line-height: 110%;
+}
+
+.calculator input {
+  background-color: rgba(0, 0, 0, 0);
+  text-align: center;
+  color: rgb(181, 181, 181);
+  border: none;
+  width: 5rem;
+  font-size: 1rem;
+  margin: auto;
+}
+
+.calculator span {
+  font-size: 0.8;
 }
 .total {
   background-color: rgba(255, 255, 255, 0);
   border: none;
   color: white;
+}
+.quantity {
+  background-color: rgb(116, 116, 116) !important;
+  border-radius: 5px;
+}
+
+.totalCalories {
+  width: 10rem;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: rgb(54, 54, 54);
+}
+
+.totalCalories input {
+  font-size: 1.3rem;
+  color: white;
+}
+
+.buttondiv {
+  margin: 1rem;
 }

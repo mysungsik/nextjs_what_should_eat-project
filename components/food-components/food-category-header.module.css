@@ -1,16 +1,21 @@
 .header {
-  width: 100%;
-  height: 3rem;
+  width: 95%;
+  height: 5rem;
   text-align: center;
+  margin: 2rem 0;
+  z-index: 2;
 }
 
-.ul {
-  width: 100%;
-  display: flex;
-  list-style: none;
-  justify-content: space-evenly;
+.header li {
+  width: max-content;
+  font-size: 1.2rem;
+  margin: 0 2rem;
 }
 
-.ul li:hover {
+.header li:hover {
   cursor: pointer;
+}
+
+.header p {
+  color: rgba(159, 159, 159, 0.549);
 }

@@ -1,5 +1,8 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
 import FoodList from "./food-list";
-import styles from "./food-tags-header.module.css";
+import styles from "./food-category-header.module.css";
 import { useState, useEffect } from "react";
 
 // "카테고리" 누르면, Allfoods 에서 온 Data 들을, filter  처리 해서, Food-list 로 보내줌
@@ -29,16 +32,41 @@ function FoodTagsHeader(props) {
   return (
     <div>
       <header className={styles.header}>
-        <ul className={styles.ul}>
-          <li onClick={() => setInsertFoodData(foodData)}>전체</li>
-          <li onClick={() => foodFilter("매콤")}> 매콤 </li>
-          <li onClick={() => foodFilter("달달")}> 달달 </li>
-          <li onClick={() => foodFilter("짭짤")}> 짭짤</li>
-          <li onClick={() => foodFilter("삼삼")}> 삼삼</li>
-          <li onClick={() => foodFilter("새콤")}> 새콤</li>
-          <li onClick={() => foodFilter("씁쓸")}> 씁쓸 </li>
-          <li onClick={() => fansyFilter()}> 고급 </li>
-        </ul>
+        <Swiper
+          className={styles.slider}
+          spaceBetween={20}
+          slidesPerView={7}
+          effect={"cube"}
+        >
+          <SwiperSlide>
+            <li onClick={() => setInsertFoodData(foodData)}>전체</li>
+          </SwiperSlide>
+          <SwiperSlide>
+            <li onClick={() => foodFilter("매콤")}> 매콤 </li>
+          </SwiperSlide>
+          <SwiperSlide>
+            <li onClick={() => foodFilter("달달")}> 달달 </li>
+          </SwiperSlide>
+          <SwiperSlide>
+            <li onClick={() => foodFilter("짭짤")}> 짭짤</li>
+          </SwiperSlide>
+          <SwiperSlide>
+            <li onClick={() => foodFilter("삼삼")}> 삼삼</li>
+          </SwiperSlide>
+          <SwiperSlide>
+            <li onClick={() => foodFilter("새콤")}> 새콤</li>
+          </SwiperSlide>
+          <SwiperSlide>
+            <li onClick={() => foodFilter("씁쓸")}> 씁쓸 </li>
+          </SwiperSlide>
+          <SwiperSlide>
+            <li onClick={() => fansyFilter()}> 고급 </li>
+          </SwiperSlide>
+          <SwiperSlide>
+            <li> </li>
+          </SwiperSlide>
+        </Swiper>
+        <p>&#5130; 스와이프하세요 &#5125; </p>
       </header>
       <main>
         <FoodList foodData={insertFoodData} />

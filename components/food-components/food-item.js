@@ -13,11 +13,19 @@ function FoodItem(props) {
       </div>
       <div className={styles.foodinfodiv}>
         <div>
-          <p>{price}</p>
+          <p>
+            평균가격 : <span> {price} </span> 원
+          </p>
         </div>
         <div>
-          <p>{taste}</p>
-          <p>{category}</p>
+          <p>
+            맛 태그 :<span> # {taste}</span>
+          </p>
+        </div>
+        <div>
+          <p>
+            카테고리 : <span> # {category}</span>
+          </p>
         </div>
       </div>
     </FoodCard>

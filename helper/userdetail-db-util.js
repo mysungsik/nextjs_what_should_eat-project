@@ -15,7 +15,11 @@ export async function findSameArray(client, userEmail, foodId) {
     .findOne({ userEmail: userEmail });
 
   // foodId 는 context.params 에서 오고,
-  const isSameArray = findResult.foodArray.find((id) => id === foodId);
+
+  let isSameArray;
+  if (findResult) {
+    isSameArray = findResult.foodArray.find((id) => id === foodId);
+  }
 
   // 초기값만 props로 받으면, page에서, State 에 저장한 다음, 버튼은 누를때마다, 추가나 삭제로 변경
   return isSameArray;

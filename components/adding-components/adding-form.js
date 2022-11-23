@@ -14,13 +14,13 @@ function AddingForm(props) {
   let autoId = String(allFoodsLength + 1);
   const [id, setId] = useState(autoId);
   const [name, setName] = useState();
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("/image/food/");
   const [category, setCategory] = useState();
   const [taste, setTaste] = useState();
   const [price, setPrice] = useState();
   const [fansy, setFansy] = useState();
   const [calorie, setCalorie] = useState();
-  const [nutri, setNutri] = useState();
+  const [nutri, setNutri] = useState("탄수화물: g // 단백질: g // 지방: g");
   const [content, setContent] = useState();
 
   async function submitHandler(e) {
@@ -37,7 +37,7 @@ function AddingForm(props) {
       nutri,
       content,
     };
-    const response = await fetch("/api/adding", {
+    const response = await fetch("/api/addingfood", {
       method: "POST",
       body: JSON.stringify(inputData),
       headers: {
@@ -99,6 +99,9 @@ function AddingForm(props) {
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            placeholder={
+              "[ 다이어트 , 한식 , 양식 , 일식 , 베트남 , 중식 , 디저트 ]"
+            }
             required
           />
         </div>
@@ -109,6 +112,7 @@ function AddingForm(props) {
             id="taste"
             value={taste}
             onChange={(e) => setTaste(e.target.value)}
+            placeholder={"[ 매콤  ,달달 , 짭짤, 삼삼, 새콤 , 씁쓸 ]"}
             required
           />
         </div>
@@ -129,6 +133,7 @@ function AddingForm(props) {
             id="foodFansy"
             value={fansy}
             onChange={(e) => setFansy(e.target.value)}
+            placeholder={"[ true or false ]"}
             required
           />
         </div>
@@ -139,6 +144,7 @@ function AddingForm(props) {
             id="foodCalorie"
             value={calorie}
             onChange={(e) => setCalorie(e.target.value)}
+            placeholder={"[ 숫자만 적을것 /100g 단위 ]"}
             required
           />
         </div>

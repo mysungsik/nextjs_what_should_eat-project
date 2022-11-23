@@ -1,0 +1,57 @@
+.headerForWeb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 0 3rem;
+  z-index: 5;
+}
+
+.headerForWeb ul {
+  display: flex;
+  list-style: none;
+}
+
+.headerForWeb li {
+  margin: 0 1rem;
+  display: flex;
+  justify-items: flex-end;
+  transition: ease-in-out 0.1s;
+  z-index: 5;
+}
+
+.headerForWeb li:hover {
+  transform: scale(1.1);
+}
+
+.headerForWeb button {
+  font-family: inherit;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 1rem;
+  border: none;
+}
+
+.headerForWeb button:hover {
+  cursor: pointer;
+}
+
+.logout {
+  font-family: inherit;
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  border: none;
+}
+
+.logout:hover {
+  cursor: pointer;
+}
+
+.userDropDown {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}

@@ -18,7 +18,22 @@
 
 .maindiv input {
   width: 23rem;
-  height: 1.8rem;
+  height: 2rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  font-weight: 600;
+}
+
+.maindiv input:hover {
+  background-color: var(--button-hover-background-color);
+  color: var(--button-hover-font-color);
+}
+
+.maindiv input::placeholder {
+  font-size: 0.8rem;
+  color: rgba(60, 60, 60, 0.573);
+  font-weight: 400;
+  text-align: center;
 }
 
 .maindiv textarea {

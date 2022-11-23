@@ -94,19 +94,16 @@ function FoodDetailForm(props) {
           <p> {content}</p>
         </div>
       </div>
-      <div>
-        <Button onClick={saveToCart}> {addingButton ? "삭제" : "추가"}</Button>
-      </div>
+      {/* isSameArray 가, useDetail의, "랜덤선택기" 페이지에서는 필요 없기 때문에 (랜덤선택기에는 isSameArray 를 넣어주지않는다.), 랜던선택기 페이지에서는 보이지 않도록 "있다면" 조건을 넣어준다. */}
+      {isSameArray != null && (
+        <div>
+          <Button onClick={saveToCart}>{addingButton ? "삭제" : "추가"}</Button>
+        </div>
+      )}
     </main>
   );
 }
 
-// 저장버튼을 누르면, API 에 요청을 해서,
-//  DB의 [eating db 안], [FAVORITE 콜렉션 안]에, email 이, useremail 과 같은 데이터가 없다면,
-// favorite id : [] 안에 담고
-
-// useremail 과 같은 데이터가 있다면, favorite id:[] 를 ... 으로 불러와, 추가적으로 foodid 를 넣어주고,
-
-// favorite id : 안의 값을 확인하여, 같은 foodid가 있다면, 아무일도 일어나지 않고, "이미 추가되었습니다" 를 띄운다.
+// 저장 로직은 [ /api/addfavorite ] 에서 확인한다.
 
 export default FoodDetailForm;
