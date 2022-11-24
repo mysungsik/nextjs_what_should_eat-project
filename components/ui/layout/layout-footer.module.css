@@ -22,8 +22,12 @@
 
 .footer li {
   margin: 0 2rem;
+  align-items: center;
 }
-
+.innerSite {
+  display: flex;
+  align-items: center;
+}
 .contact {
   display: flex;
 }
@@ -39,8 +43,19 @@
 
 @media (max-width: 780px) {
   .footer {
-    height: 5rem;
-    bottom: -5px;
-    overflow-x: scroll;
+    bottom: 2rem;
+  }
+  .ul {
+    padding: 0;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    height: 7rem;
+  }
+  .contact,
+  .innerSite {
+    margin: -1rem auto 0 auto;
+    padding: 0.5rem;
   }
 }

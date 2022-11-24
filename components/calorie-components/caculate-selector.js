@@ -40,7 +40,7 @@ function CaloireFoodSeletor(props) {
 
   // [계산기 로직]  계산을 위해 DOM 에 접근
   //  1. "추가버튼은 무한정 증가가 가능하므로, useRef 나, useState 가 아닌, 직접 DOM 에 접근한다"
-  //  2. "값을 바꿀 수 있는 섭취량 변화에 DOM 을 맞춰 onChange 트리거를 활용해 자동계산을 시킨다."
+  //  2. "값을 바꿀 수 있는 섭취량 변화에 기준을 맞춰 onChange 트리거를 활용해 자동계산을 시킨다."
   //  3. 자동계산된 칼로리 값 전부를 "querySelectorAll" 로 DOM 에 접근
   //  4. for 를 사용하여, 자동계산된 칼로리 값 전부를 "새로만든 Array 에 push하고"
   //  5. .reduce() 를 이용하여, 전부 합산시켜
@@ -69,12 +69,12 @@ function CaloireFoodSeletor(props) {
   return (
     <main className={styles.maindiv}>
       <section className={styles.selector}>
-        <h2> 선택기 </h2>
-        <hr></hr>
         <div>
+          <h2> 선택기 </h2>
+          <hr></hr>
           <h4> 카테고리</h4> {/* 1  카테고리 선택*/}
           <hr></hr>
-          <ul>
+          <ul className={styles.category}>
             <li onClick={() => filterFoodWithCategory("다이어트")}>다이어트</li>
             <li onClick={() => filterFoodWithCategory("한식")}>한식</li>
             <li onClick={() => filterFoodWithCategory("양식")}>양식</li>
@@ -113,8 +113,10 @@ function CaloireFoodSeletor(props) {
         <div>
           <ul className={styles.calculatorHeader}>
             <li> 선택음식</li>
-            <li> 섭취량 </li>
-            <li> 칼로리/100g</li>
+            <li>
+              섭취량<span className={styles.unit}>x100g</span>{" "}
+            </li>
+            <li className={styles.caloriepergram}> 칼로리/100g</li>
             <li> 총 칼로리</li>
           </ul>
           <hr></hr>
@@ -130,7 +132,7 @@ function CaloireFoodSeletor(props) {
                 onChange={(e) => calculate(e)}
                 className={styles.quantity}
               />
-              <li>
+              <li className={styles.caloriepergram}>
                 <input type={"number"} value={food.calorie} readOnly />
               </li>
               <li>

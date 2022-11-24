@@ -1,4 +1,14 @@
-.maindiv{
-    text-align: center;
-    margin: 0 auto;
+.maindiv {
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 20rem;
+}
+.nolist {
+  color: var(--special-font-color);
+}
+
+@media (max-width: 780px) {
+  .maindiv {
+    padding-bottom: 0;
+  }
 }

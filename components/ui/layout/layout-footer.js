@@ -5,18 +5,20 @@ import styles from "./layout-footer.module.css";
 function LayoutFooter(props) {
   return (
     <footer className={styles.footer}>
-      <ul>
-        <li>
-          <Link href={"/"}>
-            <h1>Logo</h1>
-          </Link>
-        </li>
-        <li>
-          <Link href={"/"}> Terms</Link>
-        </li>
-        <li>
-          <Link href={"/"}> Contact</Link>
-        </li>
+      <ul className={styles.ul}>
+        <div className={styles.innerSite}>
+          <li>
+            <Link href={"/"}>
+              <h1>Logo</h1>
+            </Link>
+          </li>
+          <li>
+            <Link href={"/"}> Terms</Link>
+          </li>
+          <li>
+            <Link href={"/"}> Contact</Link>
+          </li>
+        </div>
         <li className={styles.contact}>
           <div>
             <Link href={"/"}>
@@ -38,8 +40,8 @@ function LayoutFooter(props) {
               />
             </Link>
           </div>
+          <div>Ms-What&copy;</div>
         </li>
-        <li>Ms-What&copy;</li>
       </ul>
     </footer>
   );

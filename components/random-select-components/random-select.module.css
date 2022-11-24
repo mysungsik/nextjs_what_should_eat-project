@@ -1,3 +1,17 @@
 .maindiv {
+  padding-bottom: 5rem;
   text-align: center;
+}
+.noSave {
+  margin: 2rem;
+  color: var(--special-font-color);
+}
+
+@media (max-width: 780px) {
+  .maindiv {
+    padding-bottom: 0;
+  }
+  .maindiv p {
+    font-size: 0.8rem;
+  }
 }

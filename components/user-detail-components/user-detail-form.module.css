@@ -1,3 +1,57 @@
 .maindiv {
   text-align: center;
+  padding: 0 0 30rem 0;
+}
+
+.maindiv ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  width: 80%;
+  max-width: 25rem;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: var(--maindiv-background-color-trans8);
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+}
+
+.info h3,
+.info p {
+  width: 8rem;
+  height: 2rem;
+  align-items: center;
+  padding: 0.2rem;
+  margin: 0.2rem;
+}
+.info h3 {
+  color: var(--special-font-color);
+}
+
+.changeBtn {
+  width: 10rem;
+  border-radius: 7px;
+  margin: 1rem auto;
+  padding: 0.2rem 0;
+  color: var(--special-font-color);
+  box-shadow: 1px 1px 3px rgb(137, 137, 137);
+  text-shadow: 1px 1px 3px rgb(183, 183, 183);
+
+  background-color: rgb(0, 0, 0);
+}
+
+.changeBtn:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 780px) {
+  .maindiv {
+    padding: 0 0 20rem 0;
+  }
+  .maindiv ul {
+    width: 95%;
+  }
 }

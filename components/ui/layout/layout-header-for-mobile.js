@@ -52,7 +52,7 @@ function LayoutHeaderForMobile(props) {
         </li>
       </ul>
       {modal && (
-        <modal className={styles.mainmodal}>
+        <div className={styles.mainmodal}>
           <div className={styles.background}></div>
           <div className={styles.maindiv}>
             <h2>메뉴</h2>
@@ -123,7 +123,7 @@ function LayoutHeaderForMobile(props) {
               )}
             </ul>
           </div>
-        </modal>
+        </div>
       )}
     </header>
   );

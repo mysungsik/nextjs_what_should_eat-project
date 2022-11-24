@@ -482,6 +482,7 @@
     [OK]
 
 3. media query 로 전부 한번더 손보고
+    [OK]
 
 4. 모든 코드 되돌아 보고 정리하고 + 주석달아 한줄정리 잘 해주고
 
@@ -502,7 +503,27 @@
 [수정] ======================================================================================================
 
     1. API 이름변경 : adding ==> addingfood 
-    ...
+    
+    
+    2. food filter 를 사용할때, filter의 콜백함수에 "food.taste = taste" 가 아니라, "includes" 를 사용해서, "태그가 들어가있으면 전부 보이게"
+
+        <이전>
+            function foodFilter(taste) {
+                const filteredFoods = foodData.filter((food) => food.taste === taste);
+
+        <수정>
+            function foodFilter(taste) {
+-               const filteredFoods = foodData.filter((food) => food.taste.includes(taste));
+
+    3. media query 전부 완료
+        [OK]
+
+    4. 랜덤음식, 찜한음식 없을때 나오는 문구 완성 
+        [OK]
+
+    5. food detail 페이지에, "영양성분" css 다시 손보기 =================================****
+    -    GO!
+            
 
 
     
@@ -774,6 +795,7 @@
     top: 35%;
     left: calc(50% - 10rem);
 
+16. filter 사용할때, 들어만 있으면 찾으려면 ["includes 를 쓰자"] "== 을 사용하지 말고!"
 
 [하고싶은것]==========================================================================================
 

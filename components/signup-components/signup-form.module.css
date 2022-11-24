@@ -1,10 +1,14 @@
 .maindiv {
-  width: 40rem;
-  margin: 6rem auto 15rem auto;
+  width: 80%;
+  max-width: 40rem;
   text-align: center;
-  background-color: var(--maindiv-background-color-trans2);
-  padding: 2rem;
-  border-radius: 20px;
+  margin: 6rem auto;
+  padding-bottom: 15rem;
+}
+.signupform {
+  background-color: var(--maindiv-background-color-trans8);
+  border-radius: 15px;
+  padding: 2rem 0;
 }
 
 .signupform label {
@@ -50,4 +54,21 @@
   font-family: inherit;
   font-size: 0.5rem;
   text-align: center;
+}
+
+@media (max-width: 780px) {
+  .maindiv {
+    width: 90%;
+    padding-bottom: 13rem;
+  }
+
+  .buttons {
+    width: 100%;
+    justify-content: center;
+  }
+  .buttons button {
+    margin: 1rem;
+    padding: 0;
+    width: 6rem;
+  }
 }

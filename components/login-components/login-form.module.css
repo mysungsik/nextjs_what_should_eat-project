@@ -1,12 +1,17 @@
 .maindiv {
-  width: 40rem;
+  width: 80%;
+  max-width: 40rem;
   margin: 6rem auto;
   text-align: center;
-  background-color: rgba(60, 60, 60, 0.2);
-  padding: 2rem;
+
+  padding-bottom: 15rem;
   border-radius: 20px;
 }
-
+.loginform {
+  background-color: var(--maindiv-background-color-trans8);
+  padding: 2rem 0;
+  border-radius: 20px;
+}
 .loginform label {
   display: inline-block;
   width: 15rem;
@@ -48,4 +53,21 @@
 .checkid {
   font-size: 0.5rem;
   color: rgb(215, 215, 215);
+}
+
+@media (max-width: 780px) {
+  .maindiv {
+    width: 90%;
+    padding-bottom: 15.5rem;
+  }
+
+  .buttons {
+    width: 100%;
+    justify-content: center;
+  }
+  .buttons button {
+    margin: 1rem;
+    padding: 0;
+    width: 6rem;
+  }
 }

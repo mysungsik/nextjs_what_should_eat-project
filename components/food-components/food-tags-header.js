@@ -18,7 +18,7 @@ function FoodTagsHeader(props) {
   // 버튼 누르면, food 선별작업 해서, 새로운 데이터를 만든 후, Foodlist 로 넘겨준다.
 
   function foodFilter(taste) {
-    const filteredFoods = foodData.filter((food) => food.taste === taste);
+    const filteredFoods = foodData.filter((food) => food.taste.includes(taste));
 
     setInsertFoodData(filteredFoods);
   }

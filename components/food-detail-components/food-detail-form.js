@@ -79,11 +79,13 @@ function FoodDetailForm(props) {
         <h3> 영양성분</h3>
         <div>
           <p>
-            <span>칼로리</span> : <span>{calorie} kcal</span> / 100g
+            <span className={styles.infoname}>칼로리</span> :{" "}
+            <span>{calorie} kcal</span> / 100g
           </p>
           <span> // </span>
           <p>
-            <span>탄단지</span> : <span>[{nutri}]</span> / 100g
+            <span className={styles.infoname}>탄 / 단 / 지</span> :{" "}
+            <span>[{nutri}]</span> / 100g
           </p>
         </div>
       </div>
@@ -96,7 +98,7 @@ function FoodDetailForm(props) {
       </div>
       {/* isSameArray 가, useDetail의, "랜덤선택기" 페이지에서는 필요 없기 때문에 (랜덤선택기에는 isSameArray 를 넣어주지않는다.), 랜던선택기 페이지에서는 보이지 않도록 "있다면" 조건을 넣어준다. */}
       {isSameArray != null && (
-        <div>
+        <div className={styles.buttondiv}>
           <Button onClick={saveToCart}>{addingButton ? "삭제" : "추가"}</Button>
         </div>
       )}

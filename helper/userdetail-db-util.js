@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import bcrypt from "bcrypt";
 
 export function connectDb() {
   const client = new MongoClient(
@@ -32,4 +33,33 @@ export async function favoriteFoodArray(client, userEmail) {
     .findOne({ userEmail: userEmail });
 
   return findResult;
+}
+
+export async function getUserInfo(client, userEmail) {
+  const findResult = await client
+    .db("eating")
+    .collection("userInfo")
+    .findOne({ email: userEmail });
+  return findResult;
+}
+
+export async function checkPassword(inputPassword, dbPassword) {
+  const checkPassword = await bcrypt.compare(inputPassword, dbPassword);
+  return checkPassword;
+}
+
+export async function hashPassword(password) {
+  const hashedPassword = await bcrypt.hash(password, 10);
+  return hashedPassword;
+}
+
+export async function changePassword(client, userEmail, currentHashedPassword) {
+  const patchResult = await client
+    .db("eating")
+    .collection("userInfo")
+    .updateOne(
+      { email: userEmail },
+      { $set: { password: currentHashedPassword } }
+    );
+  return patchResult;
 }

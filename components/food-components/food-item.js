@@ -9,7 +9,14 @@ function FoodItem(props) {
     <FoodCard id={id}>
       <div className={styles.imagediv}>
         <h3> {name}</h3>
-        <Image src={image} width={500} height={500} alt={alt} priority />
+        <Image
+          src={image}
+          width={500}
+          height={500}
+          alt={alt}
+          quality={20}
+          priority
+        />
       </div>
       <div className={styles.foodinfodiv}>
         <div>

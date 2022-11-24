@@ -16,6 +16,11 @@ function Favorites(props) {
   return (
     <main className={styles.maindiv}>
       <h1> 찜한 음식</h1>
+      {favorites.length == 0 && (
+        <div className={styles.nolist}>
+          <p>찜한 항목이 없습니다</p> <p>"뭐먹지 페이지"에서 "찜" 해주세요</p>
+        </div>
+      )}
       <div>
         <FoodList foodData={favorites} />
       </div>

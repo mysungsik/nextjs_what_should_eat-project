@@ -1,8 +1,10 @@
 .maindiv {
   display: flex;
+  width: 80%;
   text-align: center;
-  margin: 3rem;
+  margin: 3rem auto;
   padding: 1rem;
+  padding-bottom: 20rem;
   border-radius: 10px;
 }
 .maindiv h4 {
@@ -33,9 +35,16 @@
   margin-right: 0.5rem;
 }
 
+.category li {
+  margin: 0.5rem 0;
+}
 .subSelector {
-  max-height: 20rem;
+  max-height: 23rem;
+  margin: 0;
   overflow-y: scroll;
+}
+.subSelector li {
+  margin: 0.5rem 0;
 }
 .calculator {
   padding: 1rem;
@@ -51,7 +60,7 @@
   background-color: rgba(0, 0, 0, 0.341);
   border-radius: 5px;
   padding: 0.25rem;
-  grid-template-columns: 20% 15% 30% 30%;
+  grid-template-columns: 26% 15% 30% 27%;
 }
 
 .calculatorHeader {
@@ -61,6 +70,11 @@
 .calculatorHeader li {
   color: white;
   font-size: 1.1rem;
+}
+.unit {
+  color: rgb(146, 146, 146);
+  font-size: 0.8rem;
+  display: inline-block;
 }
 .calculatorFoodList {
   height: 2.5rem;
@@ -111,4 +125,68 @@
 
 .buttondiv {
   margin: 1rem;
+}
+
+@media (max-width: 780px) {
+  .maindiv {
+    flex-direction: column;
+    width: 100%;
+    margin: -1.3rem auto 4.5rem auto;
+    padding: 0;
+  }
+  .maindiv hr {
+    margin: 0.2rem;
+  }
+  .category li,
+  .subSelector li {
+    margin: 0.1rem 0;
+  }
+  .selector {
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 40% 60%;
+  }
+  .selector h4,
+  .selector h2 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  .subSelector {
+    max-height: 16rem;
+    overflow-y: scroll;
+  }
+  .calculator {
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+    min-width: 1rem;
+    max-height: 25rem;
+    overflow-y: scroll;
+  }
+  .calculator h2 {
+    font-size: 1.2rem;
+  }
+  .calculatorHeader {
+    margin: 0;
+  }
+  .calculatorHeader li {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  .caloriepergram {
+    display: none !important;
+  }
+  .calculator ul {
+    grid-template-columns: 35% 25% 40%;
+  }
+  .calculatorFoodList {
+    display: grid;
+    grid-template-columns: 35% 25% 40%;
+    margin: 0;
+  }
+  .totalCalories {
+    padding: 0;
+  }
 }

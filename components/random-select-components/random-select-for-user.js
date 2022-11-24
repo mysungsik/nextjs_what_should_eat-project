@@ -9,10 +9,15 @@ function RandomSelectComponent(props) {
   const { foodData } = props;
   const [randomFood, setRandomFood] = useState();
   const [showFood, setShowFood] = useState(false);
+  const [noData, setNoData] = useState(false);
 
   let randomNumber;
 
   function randomSelect() {
+    if (foodData.length == 0) {
+      setNoData(true);
+      return;
+    }
     randomNumber = Math.ceil(Math.random() * foodData.length);
 
     setRandomFood(foodData[randomNumber - 1]);
@@ -27,6 +32,7 @@ function RandomSelectComponent(props) {
 
         <Button onClick={randomSelect}> 랜덤!</Button>
       </div>
+      {noData && <div className={styles.noSave}> 찜한 음식이 없습니다!</div>}
       {showFood && (
         <div>
           <FoodDetailForm

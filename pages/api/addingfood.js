@@ -20,6 +20,17 @@ async function handler(req, res) {
 
     inputData.alt = req.body.name;
 
+    if (
+      !inputData.name ||
+      !inputData.image ||
+      !inputData.category ||
+      !inputData.price ||
+      !inputData.calorie ||
+      !inputData.nutri
+    ) {
+      throw new Error("무언가 덜적었따.");
+    }
+
     const insertResult = await addingHandler(client, inputData);
 
     res.status(200).json({
