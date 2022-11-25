@@ -2,6 +2,7 @@ import { connectDb, findAllFoods } from "../helper/db-util";
 import { findSameArray } from "../helper/userdetail-db-util";
 import FoodDetailForm from "../components/food-detail-components/food-detail-form";
 import { getSession } from "next-auth/react";
+import Head from "next/head";
 
 function FoodDetailPage(props) {
   const { selectedFood, isSameArray } = props;
@@ -20,6 +21,13 @@ function FoodDetailPage(props) {
   } = selectedFood;
   return (
     <div>
+      <Head>
+        <title> Food Detail </title>
+        <meta
+          name="description"
+          content="this page let you know about foods detail like calorie or nutrition"
+        />
+      </Head>
       <FoodDetailForm
         id={id}
         name={name}
@@ -50,13 +58,21 @@ export async function getServerSideProps(context) {
 
   // 버튼 선택을 위한, 초기값 설정
 
+  let userEmail;
   const session = await getSession({ req: context.req });
-  const userEmail = session.user.email;
+  if (!session) {
+    userEmail = "nothing";
+  } else {
+    userEmail = session.user.email;
+  }
 
   const isSameArray = await findSameArray(client, userEmail, foodid);
 
   return {
-    props: { selectedFood, isSameArray: !!isSameArray },
+    props: {
+      selectedFood,
+      isSameArray: !!isSameArray,
+    },
   };
 }
 

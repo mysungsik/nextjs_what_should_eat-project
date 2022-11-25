@@ -23,6 +23,7 @@ function AddingForm(props) {
   const [nutri, setNutri] = useState("탄수화물: g // 단백질: g // 지방: g");
   const [content, setContent] = useState();
 
+  //등록버튼 함수
   async function submitHandler(e) {
     e.preventDefault();
     const inputData = {
@@ -37,6 +38,8 @@ function AddingForm(props) {
       nutri,
       content,
     };
+
+    // db에 등록
     const response = await fetch("/api/addingfood", {
       method: "POST",
       body: JSON.stringify(inputData),
@@ -47,16 +50,19 @@ function AddingForm(props) {
 
     const responseData = await response.json();
 
-    setId("");
-    setName("");
-    setImage("");
-    setCategory("");
-    setTaste("");
-    setPrice("");
-    setFansy("");
-    setCalorie("");
-    setNutri("");
-    setContent("");
+    // 정상적으로 data가 오면, 전부 리셋
+    if (responseData.data) {
+      setId("");
+      setName("");
+      setImage("");
+      setCategory("");
+      setTaste("");
+      setPrice("");
+      setFansy("");
+      setCalorie("");
+      setNutri("");
+      setContent("");
+    }
   }
   return (
     <div className={styles.maindiv}>

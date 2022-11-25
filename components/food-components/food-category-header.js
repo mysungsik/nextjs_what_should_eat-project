@@ -5,8 +5,8 @@ import FoodList from "./food-list";
 import styles from "./food-category-header.module.css";
 import { useState, useEffect } from "react";
 
-// 카테고리 누르면, Allfoods 에서 온 Data 들을, filter  처리 해서, Food-list 로 보내줌
-// All 을 누르면, Allfoods 에서 온 Data들을, filter 처리 없이, Foodlist 로 보내줌
+// 카테고리 누르면, Allfoods-page 에서 온 Data 들을, filter  처리 해서, Food-list-component 로 보내줌
+// All 을 누르면,   Allfoods-page 에서 온 Data들을,   filter 처리 없이, Food-list-component 로 보내줌
 
 function FoodCategoryHeader(props) {
   const { foodData } = props;

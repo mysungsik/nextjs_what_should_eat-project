@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import styles from "./random-select.module.css";
 
 function RandomSelectComponent(props) {
-  const { data: session, status } = useSession();
   const { foodData } = props;
   const [randomFood, setRandomFood] = useState();
   const [showFood, setShowFood] = useState(false);
@@ -21,12 +20,13 @@ function RandomSelectComponent(props) {
 
   return (
     <div className={styles.maindiv}>
-      <div>
-        <h2> 이 음식은 어떠신가요?</h2>
-        <p> 모든 음식중 하나만 골라드립니다 </p>
-
-        <Button onClick={randomSelect}> 랜덤!</Button>
-      </div>
+      {!showFood && (
+        <div>
+          <h2> 이 음식은 어떠신가요?</h2>
+          <p> 모든 음식중 하나만 골라드립니다 </p>
+        </div>
+      )}
+      <Button onClick={randomSelect}> 랜덤!</Button>
       {showFood && (
         <div>
           <FoodDetailForm

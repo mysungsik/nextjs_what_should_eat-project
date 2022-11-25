@@ -1,6 +1,7 @@
 import UserDetailComponent from "../../components/user-detail-components/user-detail-form";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function UserInfoPage(props) {
   const { data: session, status } = useSession();
@@ -13,10 +14,15 @@ function UserInfoPage(props) {
     router.replace("/");
   }
   return (
-    <UserDetailComponent
-      useremail={session.user.email}
-      username={session.user.name}
-    />
+    <div>
+      <Head>
+        <title> userInfo </title>
+      </Head>
+      <UserDetailComponent
+        useremail={session.user.email}
+        username={session.user.name}
+      />
+    </div>
   );
 }
 

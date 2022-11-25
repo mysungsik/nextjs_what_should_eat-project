@@ -485,19 +485,51 @@
     [OK]
 
 4. 모든 코드 되돌아 보고 정리하고 + 주석달아 한줄정리 잘 해주고
+    [OK]
 
 *** 특히나, 어려웠던 것, 새로 안 것, 복습 해야 하는 것 총정리 해서 따로 적을것
+    [OK]
 
 5. 페이지별, 기능들 다시한번 정리한 파일 만들고
+    [OK]
 
-6. Readme 파일 만들어서 남들 보게도 한번 만들고
-      *   이미지, 목표, 사용기술, 설명, 개선사항! 등... 예쁘게!
+<배포준비>
 
-7. next-auth 의 배포할때 넣어야 하는거 넣어주고
 
-8. 배포준비 [ Meta Data, title, 등] + 환경변수 파일 정리하고
+1. MetaData삽입
+    [OK]
 
-9. 배포 및 올리고 구직시작
+    <전체>
+        _app.js 에다가
+        
+    <개별>
+        import Head from "next/head"
+
+        <Head>
+            <title> Contact Me</title>
+            <meta name="description" content="just contact me if your need help" />
+        </Head>
+
+2. 환경변수 생성
+
+    <next.config.js> - "reat/constants"
+
+        https://nextjs.org/docs/api-reference/next.config.js/introduction
+
+3. 환경변수 사용 
+
+        https://nextjs.org/docs/api-reference/next.config.js/environment-variables
+
+4. next-auth 의 배포할때 넣어야 하는거 넣어주고
+
+        https://next-auth.js.org/deployment
+
+        안넣어도 되나..?
+
+5. npm run build 완료
+
+
+4. Readme 파일
 
 
 [수정] ======================================================================================================
@@ -522,303 +554,9 @@
         [OK]
 
     5. food detail 페이지에, "영양성분" css 다시 손보기 =================================****
-    -    GO!
+        [OK]
             
 
 
     
 
-
-[새로 알게된 것] ===================================================
-
-1. react bootstrap
-    https://react-bootstrap.github.io/
-
-2. swiper
-    https://swiperjs.com/react#usage
-        homepage-slide.js
-        homepage-slide.module.css
-
-    "기본사용", "이펙트사용"
-        이펙트 : https://swiperjs.com/demos#effect-fade
-
-3. 미우스오버 효과 onMouseOver, onMouseOut, onMouseLeave 아주좋군..! ...
-
-4. 드롭다운 메뉴 구성하기
-
-    1. < dropdown component 는 알아서 만들것>
-
-    2.  "드롭다운 동작 구현"
-
-        const [show, setShow] = useState(false);
-
-        function showDropDown() {
-            setShow(true);
-        }
-
-        function closeDropDown() {
-            setShow(false);
-        }  
-            ...
-
-        <li className={styles.li} onMouseOver={showDropDown}>
-            <div onMouseLeave={closeDropDown}>
-            뭐먹지
-            {show && <DropDown />}
-            </div>
-        </li>
-
-5. Grid, 자동으로 colum 갯수 맞춰주기 [repeat, auto-fill, mixmax("xx" rem, 1fr)]
-
-            display: grid;
--           grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-            gap: 1rem;
-        }
-
-6. Array.reduce() 에 관하여
-    : Array.reduce() 는, "합을 할때 가장 많이 사용한다."
-
-    const array = [1, 2, 3, 4];
-
-    const initialValue = 0;
-    const sumWithInitial = array.reduce((sum, current) => sum + current, initialValue);
-
-        => // 0 + 1 + 2 + 3 + 4
-
-    https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-
-
-
-[복습 및 까먹엇던것 및 실수]===============================================
-
-1. style 에 관하여. ["따옴표가 없음을 명심~!"]
-
-        let sedingStyle;
-
-        if (state === "pending") {
-=           sedingStyle = styles.pending;
-        }
-        if (state === "error") {
--           sedingStyle = styles.error;
-        }
-        if (state === "success") {
-=           sedingStyle = styles.success;
-        }
-
-        return (
-            <div className={styles.notification}>
-            <div className={sedingStyle}>
-
-2. postion absoulte 가운데 정렬
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-
-3. next-auth 의 authOptions 코드에 관하여
-
-    < credentials provider 일때, session 옵션 까먹지 말자>
-    session: {
-        jwt: true,
-    },
-
-4. next-auth 의 signIn 에 관하여
-
-    당연히 그냥 쓰면 안되고, function에 넣어서, 
-    preventDefault 도 사용하고 나서,
-
-    signIn 안에, [첫번재 옵션에] "어떤 provider 썼는지" , [두번째 옵션인 객체 안]에, 
-    "redirect 설정", 
-    "provider 만들때, auth 에 사용할 credentials 안에 들어갈 변수들"
-    을 넣어 주어야 provider 측에서, auth validation 으로, validation 이 가능하다.
-
-    redirect 를 설정하고 싶다면, { callbackUrl: '/'  } 으로, URL 설정을 해줄 수 도 있다.
-
-    
-    const result = await signIn("credentials", {
-        redirect: false,
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-      });
-
-5. next-auth 의 클라이언트 API 보호에 관하여
-
-    1) 클라이언트 1차 보호 : 버튼 숨기기
-
-        {status === "unauthenticated" && (
-            <li>
-            <Link href={"/login"}> 로그인</Link>
-            </li>
-        )}
-
-
-    2) 클라이언트 2차 보호 : 들어가면 튕겨나가게하기
-
-        <컴포넌트 함수 안에>
-            if (status === "loading") {
-                return <div>...loading</div>;
-            }
-            if (status === "authenticated") {
-                router.replace("/");
-            }
-
-    3) API 보호 : 아무나 못 접근하게
-
-        <API 안의 handler function 안에>
-            const session = await getSession({ req: req });
-
-            if (!session) {
-            res.status(401).json({ message: "not authenticated" });
-            return;
-            }
-
-6. useRef 가 아닌 useState 로 값을 뽑기 (값을 자유자재로 다루기 위함)
-
-        const [email, setEmail] = useState()
-
-        <input type={"email"} id={"email"} required value={email} onChange={(e) => setEmail(e.target.value)}
-
-
-    [DOM 에 접근하는 것 (event.target.value) 이 중유하다 ]
-
--       *** onChange={(e)=>setEmail(e.target.value)}
-
-7. [css] img 조정, object-fit
-
-8. getSession 사용법
-
-    const session = await getSession({req:req});
-
-9. ENV 의 사용
-    
-    [next.config.js 의 조정]
-    
-        import {...} from "next/constants"
-
-        module.exports = (phase, { defaultConfig }) => {
-            if (phase === PHASE_DEVELOPMENT_SERVER) {
-              return {
-                env:{
-                    customKey: 'my-value',
-                    ...
-                }
-              }
-            }
-        }
-
-    [ 사용 ]
-        {process.env.customKey}
-
-10. context 를 만들어서, 음식등록기(addingpage) 에, 음식번호 자동으로 추가하도록 만들기 를 하려햤지만!!
-
-    createContext 와 useContext 는, (= react context)
-        서버측 코드에서 실행이 불가능 하므로, fetch 를 사용해서, api 를 통해 불러와야하는데,
-
-        그럴바에 그냥, adding component 에서, import 해서, 사용하는게, 메모리를 덜 잡아먹겠다
-    
-    ==> 안함!
-
-
-
-11. Array.push 에 관하여 *****
-
-    Array = [1,2,3,4]
-
-    ** const total = Array.push(5)
-
-        ==> console.log(total) = 5
-            console.log(Array) = [1,2,3,4,5]
-
-12. 데이터 불러온것들 [원하는 기준으로]정리해서 정렬하기
-
-    const allPosts = allFiles.map((filename) => getSinglePost(filename));
-    const sortedPosts =  allPosts.sort((postA,postB)=>(postA.date>postB.date ? -1 : 1))
-
--   중요한점 Object 는  "데이터path 만 저장하는 것" 이란 것을 잊지 말자.
--       이렇게 해봐야, sortedFoodData 가 아닌, foodData 로 써도, 같은 "정렬된 Object 이다"
-
-        const { foodData } = props;
-
-        const sortedFoodData = foodData.sort((A, B) => (A.name > B.name ? 1 : -1));
-        const [insertFoodData, setInsertFoodData] = useState(foodData);
-
-
-13. Mongodb "특정데이터만 가져오기, 특정데이터 빼고 가져오기"
-
-    1) 특정데이터 "만" 가져오기     ==>     find({},{ name: 1})     ==> name 만 가져옴
-    2) 특정데이터 "빼고" 가져오기   ==>     find({},{ name: 0})     ==> 모두 가져오기, "name 만 빼고"
-
-14. 하나하나 넣을때마다, 하나하나 추가되는 useState 만들기
-    
-    < 프로세스 >
-        1. foodValue 를 담는 State 하나
-        2. Calculator[총집합] 에 들어갈 foodValue 들로 이루어진, foodArray State 하나
-
-        3. select 에, onChange 를 달아서, 바뀔때마다, foodValue 에 값을 넣어준다.
-
-        4. useEffect 를 통해, foodValue 가 바뀔때마다, foodArray 의 값에 추가되게 만든다
--               setFoodInCalculator((prev) => [...prev, foodValue])
-
-        5. 초기 빈값이 들어가기 때문에, if 조건을 통해, foodValue 가 있을때만, foodArray 에 넣도록 한다.
-
-    < 코드 >
-
-        function Page() 
-                    
-            const [foodValue, setFoodValue] = useState();
-            const [foodInCalculator, setFoodInCalculator] = useState([]);
-
-            useEffect(() => {
-                if (foodValue) {
-                    setFoodInCalculator((prev) => [...prev, foodValue]);
-                }
-            }, [foodValue]);
-
-            return (
-                ...
-                <select onChange={(e) => setFoodValue(e.target.value)}>
-                    {foodData.map((food) => (
-                        <option key={food.id} value={food.id}>
-                            {food.name}
-                        </option>
-
-                        ...
-            ))})
-    
-
-15. [CSS] 센터맞추기 (Translate "X" , calc() "O")
-
-    position: absolute;
-    width: 20rem;
-    top: 35%;
-    left: calc(50% - 10rem);
-
-16. filter 사용할때, 들어만 있으면 찾으려면 ["includes 를 쓰자"] "== 을 사용하지 말고!"
-
-[하고싶은것]==========================================================================================
-
-1. header 에 손대면, 툭 튀어나오는 ...
-
-2. media query 싹다 만들기
-
-    기준 width :  780px
-
-[수정할것] =================================================
-
-0. 미디어쿼리 싹다 만들기 [마지막에]
-
-0. Meta 의 header 전부 추가하기
-
-1. notification css 수정하기
-    : 자꾸 화면 움직이게 만듬 => absolute 로 방해 안되게하기
-
-2. MODAL 재사용할거면, props 로 값을 넘겨주는게 중요
-
-3. ADMIN 만들어서, "추가", "수정", "삭제" 가능하게 만들기
-
-4. ** Db 에서 끌어와서 값을 넣어줄 때에는, 반드시, allfoods Page에서, getStaticProps 를 통해, 끌어오자
-
-5. 모든 FOOD들을, 여러번 DB에서 가져오면 안되니까, allfoods 에서 어차피 가져오는 FOOD의 LENGTH 를, CONTEXT 로 만들어서, ADDING 페이지에 쓸 수 있게하기
-    혹은!, allfoods 페이지 내에, adding 을 추가하든가.

@@ -26,12 +26,13 @@ function RandomSelectComponent(props) {
 
   return (
     <div className={styles.maindiv}>
-      <div>
-        <h2> 이 음식은 어떠신가요?</h2>
-        <p>{session.user.email} 님의 찜한 음식 내에서 골라드립니다. </p>
-
-        <Button onClick={randomSelect}> 랜덤!</Button>
-      </div>
+      {!showFood && (
+        <div>
+          <h2> 이 음식은 어떠신가요?</h2>
+          <p>{session.user.email} 님의 찜한 음식 내에서 골라드립니다. </p>
+        </div>
+      )}
+      <Button onClick={randomSelect}> 랜덤!</Button>
       {noData && <div className={styles.noSave}> 찜한 음식이 없습니다!</div>}
       {showFood && (
         <div>

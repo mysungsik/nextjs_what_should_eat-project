@@ -2,6 +2,9 @@ import FoodCard from "../ui/card/foodcard";
 import Image from "next/image";
 import styles from "./food-item.module.css";
 
+// item 의 모든 베이스가 되는 컴포넌트
+// 껍데기는 "UI" 의 "CARD" 폴더 에서 "FOODCARD" 컴포넌트를 이용한다.
+
 function FoodItem(props) {
   const { id, name, image, price, taste, category, alt } = props;
 

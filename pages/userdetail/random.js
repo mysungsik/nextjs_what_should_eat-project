@@ -4,6 +4,7 @@ import { useSession, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { connectDb, findAllFoods } from "../../helper/db-util";
 import { favoriteFoodArray } from "../../helper/userdetail-db-util";
+import Head from "next/head";
 
 function RandomSelectPageForUser(props) {
   const { favorites } = props;
@@ -19,6 +20,13 @@ function RandomSelectPageForUser(props) {
 
   return (
     <div>
+      <Head>
+        <title> Random Food for User </title>
+        <meta
+          name="description"
+          content="this page pick random food, where you picked in all foods"
+        />
+      </Head>
       <RandomSelectComponent foodData={favorites} />
     </div>
   );

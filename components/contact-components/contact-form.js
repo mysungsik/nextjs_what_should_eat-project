@@ -3,6 +3,7 @@ import Button from "../ui/card/button";
 import { useState } from "react";
 
 function ContactForm() {
+  // state 를 사용한, input value 넣기
   const [email, setEmail] = useState();
   const [name, setName] = useState();
   const [content, setContent] = useState();
@@ -26,6 +27,7 @@ function ContactForm() {
 
     const responseData = await response.json();
 
+    // 정상적인 데이터를 받았다면(성공했다면), 지우기
     if (responseData.status === "success") {
       setEmail("");
       setName("");

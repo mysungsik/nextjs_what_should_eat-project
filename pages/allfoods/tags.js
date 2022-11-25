@@ -1,10 +1,19 @@
 import FoodTagsHeader from "../../components/food-components/food-tags-header";
 import { connectDb, findAllFoods } from "../../helper/db-util";
+import Head from "next/head";
 
 function AllFoodsWithTagsPage(props) {
   const { allfoods } = props;
 
-  return <div>{<FoodTagsHeader foodData={allfoods} />}</div>;
+  return (
+    <div>
+      <Head>
+        <title> All Foods with Tags</title>
+        <meta name="description" content="this show all foods with Tags" />
+      </Head>
+      {<FoodTagsHeader foodData={allfoods} />}
+    </div>
+  );
 }
 
 export async function getStaticProps() {

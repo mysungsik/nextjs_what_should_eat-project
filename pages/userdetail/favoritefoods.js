@@ -4,6 +4,7 @@ import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { connectDb, findAllFoods } from "../../helper/db-util";
 import { favoriteFoodArray } from "../../helper/userdetail-db-util";
+import Head from "next/head";
 
 function FavoriteFoodsPage(props) {
   const { data: session, status } = useSession();
@@ -18,6 +19,10 @@ function FavoriteFoodsPage(props) {
   }
   return (
     <div>
+      <Head>
+        <title> Favorite Food </title>
+        <meta name="description" content="show page what you picked in all foods" />
+      </Head>
       <div>
         <Favorites favorites={favorites} />
       </div>

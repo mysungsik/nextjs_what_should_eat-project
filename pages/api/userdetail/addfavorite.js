@@ -34,7 +34,7 @@ async function handler(req, res) {
       return;
     }
 
-    // 이미 같은 useEmail 을 사용한 data가 존재하는가??
+    // 이미 같은 useEmail 을 사용한 data가 존재하는가?
     // 그렇다면, 그 data 안에 있는 foodArray를 꺼낸 후,
     // 현재 넣으려고 하는 foodId가 있는지 확인한다..
 

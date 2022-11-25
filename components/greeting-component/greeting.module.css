@@ -1,0 +1,26 @@
+.maindiv {
+  background-color: var(--maindiv-background-color-trans8);
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem 2rem 10rem 2rem;
+  border-radius: 10px;
+}
+.maindiv h1 {
+  color: var(--special-font-color);
+}
+.maindiv span {
+  color: rgb(255, 132, 132);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 780px) {
+  .maindiv {
+    width: 85%;
+    height: 37rem;
+    padding-top: 1rem;
+    padding-bottom: 5rem;
+    overflow-y: scroll;
+  }
+}

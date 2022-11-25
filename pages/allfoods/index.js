@@ -1,10 +1,19 @@
 import FoodCategoryHeader from "../../components/food-components/food-category-header";
 import { connectDb, findAllFoods } from "../../helper/db-util";
+import Head from "next/head";
 
 function AllFoodsPage(props) {
   const { allfoods } = props;
 
-  return <div>{<FoodCategoryHeader foodData={allfoods} />}</div>;
+  return (
+    <div>
+      <Head>
+        <title> All Foods with Category</title>
+        <meta name="description" content="this show all foods with category" />
+      </Head>
+      {<FoodCategoryHeader foodData={allfoods} />}
+    </div>
+  );
 }
 
 export async function getStaticProps() {

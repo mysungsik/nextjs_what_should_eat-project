@@ -1,10 +1,9 @@
 import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
 
+const MongodbURI = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.xpihqcv.mongodb.net/?retryWrites=true&w=majority`;
 export function connectDb() {
-  const client = new MongoClient(
-    "mongodb+srv://audtlr:lNbip9a0o2BUm0u2@eating.xpihqcv.mongodb.net/?retryWrites=true&w=majority"
-  );
+  const client = new MongoClient(MongodbURI);
 
   return client;
 }

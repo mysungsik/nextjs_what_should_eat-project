@@ -5,11 +5,19 @@
 
 import CaloireFoodSeletor from "../components/calorie-components/caculate-selector";
 import { connectDb, findAllFoodsForCalorie } from "../helper/db-util";
+import Head from "next/head";
 
 function CalorieCalculator(props) {
   const { findResult } = props;
   return (
     <div>
+      <Head>
+        <title> Calorie Calculator </title>
+        <meta
+          name="description"
+          content="this page calculate foods calorie what you eat"
+        />
+      </Head>
       <CaloireFoodSeletor foodData={findResult} />
     </div>
   );

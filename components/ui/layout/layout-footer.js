@@ -12,8 +12,8 @@ function LayoutFooter(props) {
               <h1>Logo</h1>
             </Link>
           </li>
-          <li>
-            <Link href={"/"}> Terms</Link>
+          <li className={styles.howToUse}>
+            <Link href={"/greeting"}> HowtoUse</Link>
           </li>
           <li>
             <Link href={"/"}> Contact</Link>
@@ -21,7 +21,7 @@ function LayoutFooter(props) {
         </div>
         <li className={styles.contact}>
           <div>
-            <Link href={"/"}>
+            <Link href={"https://github.com/mysungsik/nextjs_personal_project"}>
               <Image
                 src={"/image/footer/GitHub-Logo.png"}
                 alt={"github"}
@@ -31,7 +31,7 @@ function LayoutFooter(props) {
             </Link>
           </div>
           <div>
-            <Link href={"/"}>
+            <Link href={"https://dive-into-frontend.tistory.com/"}>
               <Image
                 src={"/image/footer/tistory.png"}
                 alt={"blog"}

@@ -16,6 +16,7 @@ function FoodTagsHeader(props) {
   const [insertFoodData, setInsertFoodData] = useState(foodData);
 
   // 버튼 누르면, food 선별작업 해서, 새로운 데이터를 만든 후, Foodlist 로 넘겨준다.
+  // 태그가 하나라도 포함되어있으면, 보여준다.
 
   function foodFilter(taste) {
     const filteredFoods = foodData.filter((food) => food.taste.includes(taste));
