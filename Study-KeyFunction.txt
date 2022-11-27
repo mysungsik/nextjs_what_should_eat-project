@@ -211,7 +211,7 @@
 
 3. 로그인 기능
 
-    <next-auth 의 사용>
+    <next-auth 의 사용> 
 
         0. npm install next-auth
         1. /api/auth/[...]/[...nextauth].js 안에, Auth 로직을 만든다.
