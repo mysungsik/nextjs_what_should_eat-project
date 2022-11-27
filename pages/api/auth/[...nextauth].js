@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 
 export const authOptions = {
   session: {
-    jwt: true,
+    strategy: "jwt",
   },
   providers: [
     CredentialsProvider({
@@ -34,5 +34,6 @@ export const authOptions = {
       },
     }),
   ],
+  secret: process.env.SECRET,
 };
 export default NextAuth(authOptions);

@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./food-detail-form.module.css";
 import Button from "../ui/card/button";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 function FoodDetailForm(props) {
@@ -22,6 +22,10 @@ function FoodDetailForm(props) {
     isSameArray,
   } = props;
   const [addingButton, setAddingButton] = useState(isSameArray);
+
+  useEffect(() => {
+    setAddingButton(isSameArray);
+  }, [isSameArray]);
 
   // API 로 보내줄 데이터는, email 과 foodid
   // API 에서는, 그것들을 db에서 뽑아 판단해, 적절한 조치를 취한다.

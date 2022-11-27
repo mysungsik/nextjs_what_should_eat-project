@@ -13,7 +13,7 @@ async function handler(req, res) {
 
     const { email, name, content } = req.body;
 
-    if (contactValidation) {
+    if (contactValidation(email, name, content)) {
       throw new Error("잘못된 양식입니다.");
     }
 

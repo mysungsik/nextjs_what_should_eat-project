@@ -1,26 +1,38 @@
 import Button from "../ui/card/button";
 import FoodDetailForm from "../food-detail-components/food-detail-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import styles from "./random-select.module.css";
 
-function RandomSelectComponent(props) {
+function RandomSelectComponent() {
   const { data: session, status } = useSession();
-  const { foodData } = props;
   const [randomFood, setRandomFood] = useState();
   const [showFood, setShowFood] = useState(false);
   const [noData, setNoData] = useState(false);
+  const [favoritesData, setFavoritesData] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/userdetail/favorite-food-for-user", {
+      method: "POST",
+      body: JSON.stringify({ useEmail: session.user.email }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(setFavoritesData(data.favorites)));
+  }, []);
 
   let randomNumber;
 
   function randomSelect() {
-    if (foodData.length == 0) {
+    if (favoritesData.length == 0) {
       setNoData(true);
       return;
     }
-    randomNumber = Math.ceil(Math.random() * foodData.length);
+    randomNumber = Math.ceil(Math.random() * favoritesData.length);
 
-    setRandomFood(foodData[randomNumber - 1]);
+    setRandomFood(favoritesData[randomNumber - 1]);
     setShowFood(true);
   }
 

@@ -9,20 +9,38 @@
 
 import FoodList from "../food-components/food-list";
 import styles from "./favorite-foods.module.css";
+import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
 
-function Favorites(props) {
-  const { favorites } = props;
+function Favorites() {
+  const { data: session, status } = useSession();
+  const [favoritesData, setFavoritesData] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/userdetail/favorite-food-for-user", {
+      method: "POST",
+      body: JSON.stringify({ useEmail: session.user.email }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setFavoritesData(data.favorites));
+  }, []);
+
+  // 직접 여기에서, 값을 찾아서, Foodlist 로 넘긴다.
+  // 값을 찾는것은 API 를 통해서, FETCH
 
   return (
     <main className={styles.maindiv}>
       <h1> 찜한 음식</h1>
-      {favorites.length == 0 && (
+      {favoritesData.length == 0 && (
         <div className={styles.nolist}>
           <p>찜한 항목이 없습니다</p> <p>"뭐먹지 페이지"에서 "찜" 해주세요</p>
         </div>
       )}
       <div>
-        <FoodList foodData={favorites} />
+        <FoodList foodData={favoritesData} />
       </div>
     </main>
   );

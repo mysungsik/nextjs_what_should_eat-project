@@ -1,14 +1,6 @@
 import { connectDb } from "../../../helper/userdetail-db-util";
-import { getSession } from "next-auth/react";
 
 async function handler(req, res) {
-  const session = await getSession({ req: req });
-
-  if (!session) {
-    res.status(401).json({ message: "you are not authenticated" });
-    return;
-  }
-
   if (req.method === "POST") {
     const client = await connectDb();
 

@@ -473,7 +473,7 @@
 
     ==> CSS 손보기
 
-<마무리시작>
+<마무리시작> ============================================================
 
 1. Random 선택기 완성
     [OK]
@@ -493,11 +493,10 @@
 5. 페이지별, 기능들 다시한번 정리한 파일 만들고
     [OK]
 
-<배포준비>
+<배포준비> ============================================================
 
 
-1. MetaData삽입
-    [OK]
+1. MetaData삽입 [OK]
 
     <전체>
         _app.js 에다가
@@ -510,26 +509,34 @@
             <meta name="description" content="just contact me if your need help" />
         </Head>
 
-2. 환경변수 생성
+2. 환경변수 생성 [OK]
 
     <next.config.js> - "reat/constants"
 
         https://nextjs.org/docs/api-reference/next.config.js/introduction
 
-3. 환경변수 사용 
+3. 환경변수 사용  [OK]
 
         https://nextjs.org/docs/api-reference/next.config.js/environment-variables
 
-4. next-auth 의 배포할때 넣어야 하는거 넣어주고
+4. next-auth 의 배포할때 넣어야 하는거 넣어주고 [OK]
 
         https://next-auth.js.org/deployment
 
         안넣어도 되나..?
 
-5. npm run build 완료
+-       일단 안넣었다. 배포하고 나서 보자
+-       BUILD 를 돌렷을때는 아직 괜찮다.
+
+5. npm run build 완료 [OK]
+
+-       빌드하고, 빌드검사 완료
 
 
-4. Readme 파일
+6. sharp 패키지 설치해서 이미지 어떻게 해보자
+
+
+6. Readme 파일
 
 
 [수정] ======================================================================================================

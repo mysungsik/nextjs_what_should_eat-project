@@ -1,4 +1,3 @@
-import { getSession } from "next-auth/react";
 import {
   connectDb,
   getUserInfo,
@@ -8,13 +7,8 @@ import {
 } from "../../../helper/userdetail-db-util";
 
 async function handler(req, res) {
-  const session = await getSession({ req: req });
   const { useremail, currentPassword, newPassword } = req.body;
 
-  if (!session) {
-    res.status(401).json({ message: "you are not authenticated" });
-    return;
-  }
   if (req.method !== "PATCH") {
     return;
   }

@@ -16,7 +16,7 @@ function LayoutFooter(props) {
             <Link href={"/greeting"}> HowtoUse</Link>
           </li>
           <li>
-            <Link href={"/"}> Contact</Link>
+            <Link href={"/contact"}> Contact</Link>
           </li>
         </div>
         <li className={styles.contact}>

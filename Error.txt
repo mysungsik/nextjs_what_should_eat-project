@@ -51,4 +51,208 @@
 
         int 형태로 되어있는 ID 때문에, find도, filter 도 안되는 경우가 많다.
 
+
+4. [에러는 아니지만, Image Optimization 추가사항]
+
+    For production Image Optimization with Next.js, the optional 'sharp' package is strongly recommended. 
+    Run 'yarn add sharp', and Next.js will use it automatically for Image Optimization.
+
+-   ==> "sharp" 패키지를 설치하란다.
+
+
+5. [build과정] [next-auth SECRET 없는 에러]
+    
+    : secret 을 설정하지 않아서 그렇다.
+
+    https://next-auth.js.org/getting-started/upgrade-v4#missing-secret
+
+
+[6 ~ 8 next-auth 안에서, getSession 을 사용할 수 없는 ERROR]
+
+6. [build과정] [next-auth] => Decryption Error가 나온다.
+
+-   [...nextauth].js 의  "option" 중, session 을 지워버렸다. 을 지워버렸다. 요즘은 안쓴다고 하길래
+
+        <삭제>
+            session: {
+                jwt: true,
+            }
+
+-   ==> 해결되는듯 보였으나, 서버 측에서, getSession 을 사용 할 수 없었다.
+
+-       ** 이거랑은 전혀 관계 없고, 어차피 안쓰면 default 로 jwt 로 지정될뿐더러, v4 에서는 이렇게 사용한다.
+        https://next-auth.js.org/getting-started/upgrade-v4#session
+
+
+7. [build과정] [next-auth] getSession 을 이용해 얻은 정보로 fetch 를 진행 할 수 없다.
+
+-   ** 안되는 페이지
+        1. userdetail - favoritefoods
+        2. userdetail - random
+        3. [foodid]
+ 
+-   ** 공통점
+        : "getServerSideProps" 안에, "getSession" 을 사용하여, "유저데이터를 불러오려했다."
+
+-   ** "getServerSideProps" 가 문제인가?
+        : 아니다. 일반페이지의 random (모든 유저를 위한 랜덤선택기) 에서도 getServerSideProps 를 사용한다.
+
+-   ** "getSeesion" 이 문제이다. "getServerSideProps" 안에 사용한 "getSession"
+
+        : "next-auth 에서는 getServerSideProps의 사용을 권장하지 않는다." fetch 를 사용할때 좋지 않은 점이 많다고 한다.
+
+            =>  "getSession을 사용하려면 getServerSideProps 를 사용해야하고, 그러면 좋지 않다고 하니 어떻게하지?"
+
+            * next-auth 에서는 [unstable_getServerSession] 의 사용을 그나마 권장하지만 그것마저도 좋지는 않다고 한다.
+        
+        사용방법은 이렇다
+            https://next-auth.js.org/configuration/nextjs#unstable_getserversession
+
+8. [최종해결] 모든 getServerSideProps 안에 getSession 을 사용하지 않는다.
+
+-   : getServerSideProps 안에서 getSession을 전부 지워버리고 사용하지 않도록 하겠다.
+
+    1. "userdetail" - "favoritefoods PAGE"           [변경 완료]
+
+        <기존로직>
+            1. getSession 을 통해 user "정보"
+            2. "정보"를 통해, db-util을 import 해서 "favroiteFoodsData(food id 모음) 를 가져옴"
+            3. "favroiteFoodsData가 있다면" for,filter 를 통해, "food Data Array" 를 만들고
+            4. 그 값을 "favorites-food Component" 에 넣어주어 FoodList 를 보여줌
+
+        < 변경로직 >
+            1. 바로 "favorites-food Component" 에 가서
+            2. "useSession" 을 통해, 정보를 얻어서
+            3." 앞선, 로직을 api 에 넣어"서, "API 에 get 요청을 통해 값을 얻어"
+            4. 값을 넣는다.
+
+        < 변경코드 >
+
+-           < helper / favorite-food-for-user.js>
             
+                    import { MongoClient } from "mongodb";
+
+                    const MongodbURI = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.xpihqcv.mongodb.net/?retryWrites=true&w=majority`;
+
+                    export function connectDb() {
+                        const client = new MongoClient(MongodbURI);
+                    return client;
+                    }
+
+                    export async function favoriteFoodsDataArrayForUser(client, userEmail) {
+                        const allfoods = await client                                       // 모든food데이터찾고
+                            .db("eating")
+                            .collection("foodInfo")
+                            .find({})
+                            .toArray();
+
+                        let favoriteFoodsArray = [];                                    // 유저에 맞는 favoriteFoodsData(찜한 food id로만 이루어진 Array) 가 없을 수 있으므로, 빈배열만들고
+
+                        const favoriteFoodsData = await client
+                            .db("eating")
+                            .collection("userFavorite")
+                            .findOne({ userEmail: userEmail });
+
+                        if (favoriteFoodsData) {
+                            favoriteFoodsArray = favoriteFoodsData.foodArray;           // 만약 유저에 맞는 favoriteFoodsData 가 있다면, 빈 배열 안에 넣는다.
+                        }
+
+                        let favorites = [];
+
+                        for (const foodid of favoriteFoodsArray) {                           // 찜한 "food id 로만" 이루어진 "favoriteFoodsArray" 이므로,
+                            const result = allfoods.filter((food) => food.id === foodid);    // 그 안에 있는 모든 값에 대하여 하나하나씩, 전체 foodData를 filter로 찾아, 하나하나 "새 배열" 안에 push 한다.
+                            favorites.push(...result);
+                        }
+
+                    return favorites;
+                    }
+
+-           < api / userdetail / favorite-food-for-user.js >    : POST 로 userEmail 을 받아, 값을 넘김 
+                                                                    ** getSession 을 통해, 클라이언트가 아닌, 스스로 useremail 을 찾아, GET 요청을 통해 값을 보내도됌
+
+                    import {connectDb, favoriteFoodsDataArrayForUser, } from "../../../helper/favorite-food-for-user";
+                    import { getSession } from "next-auth/react";
+
+                    async function handler(req, res) {
+                        const { useEmail } = req.body;
+                      
+                        const session = await getSession({ req: req });         
+                      
+                        if (!session) {                                                       // API보호
+                          res.status(401).json({ message: "you are not authenticated" });
+                          return;
+                        }
+
+                        let client;
+                        let favoriteData = [];
+
+                        if (req.method === "POST") {
+                            try {
+                                client = await connectDb();
+                            } catch (error) {
+                                throw new Error("connnect fail");
+                            }
+                    
+-                           favoriteData = await favoriteFoodsDataArrayForUser(client, useEmail);
+                    
+                            res.status(200).json({ message: "success", favorites: favoriteData });
+                        }
+                    }
+                    export default handler;
+
+-           < Components / user-detail-components / favorite-foods>     : POST 요청으로, userEmail 을 넘기고, 값을 받아옴
+               
+                    function Favorites() {
+                        const { data: session, status } = useSession();
+                        const [favoritesData, setFavoritesData] = useState([]);
+                    
+                        useEffect(() => {
+                        fetch("/api/userdetail/favorite-food-for-user", {
+                            method: "POST",
+                            body: JSON.stringify({ useEmail: session.user.email }),
+                            headers: {
+                            "Content-Type": "application/json",
+                            },
+                        })
+                            .then((res) => res.json())
+                            .then((data) => console.log(setFavoritesData(data.favorites)));
+                        }, []);
+
+                        return(
+                            ...
+                        )
+
+
+    2. "userdetail" - "random PAGE"                 [변경 완료]
+-     : 앞에것과 다를바 없다
+
+        < 변경 로직>
+            1. 바로 "random-select-for-user Components" 에 가서
+            2. "favroiteFoodsData 뽑고, for, filter 를통해, food Data Array 를 만들어 주는 API 로직" 을 "API 안에 만들고"
+            3. 그 값을 GET 요청으로 FETCH 하여, 값을 넣어주자.
+
+
+    3. "[foodid] PAGE"
+
+        < 현재 로직 >
+            1. 전체 음식 사전데이터페칭(getServerSideProps)
+            2. [버튼을위한] "getSession" 을 통해, "useEmail" 값 받아와서,
+            3. "useEmail" 과, "foodid"(context.params) 로 "findSameArray함수 실행"
+            4. findSameArray 의 값을, PAGE 에 넘겨주면,
+            5. "FoodDetailForm Component 에 그것을 넘겨"주면, Component는 그것으 받아 실행
+
+        <변경 로직> 
+            1. 사전 데이터페칭은, getStaticProps 로 변경, getStaticPaths 를 "blocking" 으로 실행
+            2. [버튼을 위한] 것은 "getSession" 대신, "useSession" 을 통해," userEmail 받아오고",
+            3. "페이지 내에서" "API 요청을 통해",  findSameArray 함수까지 전부 실행시킨후, components 에 넘겨준다.
+                    * useEffect, useState, fetch
+
+
+9. API 마저도, getSession 을 쓰면 전부 망가져버렸다. [서버측 코드에서 session 을 불러올 무언가를 알아내야한다.]
+
+    : [unstable_getServerSession] 을 사용해야하나..?
+
+    API 를 보호할 수 있는 수단을 찾아야하겠다.
+       
+
+    
