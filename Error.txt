@@ -255,4 +255,163 @@
     API 를 보호할 수 있는 수단을 찾아야하겠다.
        
 
-    
+- [ 배포후 문제점] - 최적화 해야함
+
+    1.  "유저 디테일"의 "내음식" 페이지의 로딩이 너무 느리다
+    2.  "유저 디테일"의 "랜덤선택기" 페이지의 로딩이 너무너무 느리다.
+    3.  "유저 디테일"의 "랜덤선택기" 페이지에서, 로딩중 랜덤 버튼을 눌러버리면, "찜 없음" 표시가 계속해서 나오게된다.
+
+
+    <해결>
+        방법1. 전부 "getStaticProps" 로 사전 데이터페칭을 하지 않아서 생기는 문제이다. "변경하도록하자"
+        방법2. "setTimeOut" 으로 "페이지 로딩될때까지 loading 페이지를 띄운다".
+
+        => 방법1 + 방법2 를 병합해보자(필요하다면). 어차피 로딩시간은 필요하니까
+
+- [최적화]  ===================================
+
+    1.  "유저 디테일"의 "내음식" 페이지의 로딩이 너무 느리다
+
+        =>  1) Page 에서 "사전데이터페칭"으로 "모든 데이터와, 모든 Favorties 데이터"를 가져와, "컴포넌트에 넘김"
+            2) useSeesion 으로, "모든 Favorties 데이터" 에  담긴 것들 중, "유저에게 맞는 데이터만 불러와서 (find)"
+            3) 불러온 Array 로, allFoodData 를, for, find 처리해서, 값을 남긴다.
+
+            <PAGES>
+            
+                import { findAllFoods, connectDb } from "../../helper/db-util";
+                import { allFavoriteFoodArray } from "../../helper/userdetail-db-util";
+                        ...
+
+                function FavoriteFoodsPage(props) {
+                    const { data: session, status } = useSession();
+                    const { allFoods, allFavoriteFoods } = props;
+                            ...
+
+                    retunr(
+                        ...
+                        <div>
+                            <Favorites allFoods={allFoods} allFavoriteFoods={allFavoriteFoods} />
+                        </div>
+                    )
+
+                export async function getStaticProps() {
+                    const client = await connectDb();
+                    const allFoods = await findAllFoods(client);
+                    const allFavoriteFoods = await allFavoriteFoodArray(client);
+                
+                    const allFoodsEscapeIssue = JSON.parse(JSON.stringify(allFoods));  // 직렬화 이슈 제거
+                    const allFavoriteFoodsEscapeIssue = JSON.parse(
+                    JSON.stringify(allFavoriteFoods)
+                    );
+                
+                    return {
+                    props: {
+                        allFoods: allFoodsEscapeIssue,
+                        allFavoriteFoods: allFavoriteFoodsEscapeIssue,
+                    },
+                    };
+                }
+
+            <API>
+                
+                export async function findAllFoods(client) {
+                    const findResult = await client
+                    .db("eating")
+                    .collection("foodInfo")
+                    .find({})
+                    .toArray();
+                
+                    return findResult;
+                }
+
+                export async function allFavoriteFoodArray(client) {
+                    const findResult = await client
+                      .db("eating")
+                      .collection("userFavorite")
+                      .find({})
+                      .toArray();
+                  
+                    return findResult;
+                }
+
+            <COMPONENT>
+
+            
+                function Favorites(props) {
+                    const { data: session, status } = useSession();
+                    const { allFoods, allFavoriteFoods } = props; // 모든데이터와, 모든 Favoites 데이터를 가져와서
+                    const [favoritesData, setFavoritesData] = useState([]); // 각 유저의, 최종 Favorite Food Data
+                
+                    useEffect(() => {
+                        if (status === "authenticated") {
+                            const userFavoriteFoodArray = allFavoriteFoods.find((food) => food.userEmail == session.user.email);
+                    
+                            let favorites = [];
+                    
+                            for (const foodid of userFavoriteFoodArray.foodArray) {
+                                const result = allFoods.find((food) => food.id === foodid);
+                                favorites.push(result);
+                            }
+                            setFavoritesData(favorites);
+                        }
+                    }, [status]);
+
+                    return(
+                        ...
+                    )
+
+    2.  "유저 디테일"의 "랜덤선택기" 페이지의 로딩이 너무너무 느리다.
+
+-       1번과 같다.
+            1) Page 에서 "사전데이터페칭"으로 "모든 데이터와, 모든 Favorties 데이터"를 가져와, "컴포넌트에 넘김"
+            2) useSeesion 으로, "모든 Favorties 데이터" 에  담긴 것들 중, "유저에게 맞는 데이터만 불러와서 (find)"
+            3) 불러온 Array 로, allFoodData 를, for, find 처리해서, 값을 남긴다.
+
+            <COMPONENT>
+                function RandomSelectComponent(props) {
+                    const { allFoods, allFavoriteFoods } = props;               // page 에서 "사전데이터페칭" 으로 값을 가져옴
+                    const { data: session, status } = useSession();
+                    const [randomFood, setRandomFood] = useState();             // 모든 찜한 음식들의 데이터들 중, "화면에 표시될 단 하나의 데이터"
+                    const [favoritesData, setFavoritesData] = useState([]);     // 모든 찜한 음식들의 데이터
+                    const [showFood, setShowFood] = useState(false);            // 랜덤! 버튼을 누르면 나올 모듈
+                    const [noData, setNoData] = useState(false);                // 데이터가 없다면, 나올 모듈
+                
+                    useEffect(() => {
+                        if (status === "authenticated") {
+                            const userFavoriteFoodArray = allFavoriteFoods.find((food) => food.userEmail == session.user.email);
+                    
+                            let favorites = [];
+                    
+                            for (const foodid of userFavoriteFoodArray.foodArray) {
+                                const result = allFoods.find((food) => food.id === foodid);
+                                favorites.push(result);
+                            }
+
+                            setFavoritesData(favorites);
+                        }
+                    }, [status]);
+
+                        ...
+
+                    return(
+                        ...
+                    )
+
+    3.  "유저 디테일"의 "랜덤선택기" 페이지에서, 로딩중 랜덤 버튼을 눌러버리면, "찜 없음" 표시가 계속해서 나오게된다. 
+
+        : if 에 length가 0면, setNoData 하고 끝내야되는데, return 을 했지만, else 를 안해서 그렇다.
+
+            if, else 문으로, 확실히, 다음 조건으로 넘어가지 않도록 한다.
+
+            function randomSelect() {
+                if (favoritesData.length == 0) {
+                setNoData(true);
+                return;
+
+                } else {
+                randomNumber = Math.ceil(Math.random() * favoritesData.length);
+            
+                setRandomFood(favoritesData[randomNumber - 1]);
+                setShowFood(true);
+                }
+            }

@@ -8,6 +8,7 @@ export function connectDb() {
   return client;
 }
 
+// 유저 생성
 export async function createUser(client, data) {
   const hashedPassword = await bcrypt.hash(data.password, 10);
   data.password = hashedPassword;
@@ -19,6 +20,7 @@ export async function createUser(client, data) {
   return insertResult;
 }
 
+// 유저의 상세정보
 export async function findUserInfo(client, email) {
   const findResult = await client
     .db("eating")
@@ -28,6 +30,7 @@ export async function findUserInfo(client, email) {
   return findResult;
 }
 
+// 컨택트 DB
 export async function contactHandler(client, data) {
   const insertResult = await client
     .db("eating")
@@ -36,6 +39,7 @@ export async function contactHandler(client, data) {
   return insertResult;
 }
 
+// 음식 추가기 의 DB
 export async function addingHandler(client, data) {
   const insertResult = await client
     .db("eating")
@@ -44,6 +48,7 @@ export async function addingHandler(client, data) {
   return insertResult;
 }
 
+// 모든 음식 데이터
 export async function findAllFoods(client) {
   const findResult = await client
     .db("eating")
@@ -54,6 +59,7 @@ export async function findAllFoods(client) {
   return findResult;
 }
 
+// 한 음식 디테일 데이터
 export async function findFoodDetail(client, foodid) {
   let findResult = await client
     .db("eating")
@@ -63,6 +69,7 @@ export async function findFoodDetail(client, foodid) {
   return findResult;
 }
 
+// 칼로리만 뽑는 데이터
 export async function findAllFoodsForCalorie(client) {
   const findResult = await client
     .db("eating")

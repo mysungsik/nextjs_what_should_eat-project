@@ -1,35 +1,33 @@
-// db에, favorite 이라는, db를 만들어,
-
-// user email 과 함께 food id 를 같이 저장
-
-// 불러올때, 1. userid 에 저장된, foodid 를 불러옴 [배열형태로]
-//          전체 foods 를 불러와, filter
-
-// 관심 음식 불러오기는 버튼누르면, 아래로 쭉 펼쳐지게 하기
+// 1) Page 에서 "사전데이터페칭"으로 "모든 데이터와, 모든 Favorties 데이터"를 가져와, "컴포넌트에 넘김"
+// 2) useSeesion 으로, "모든 Favorties 데이터" 에  담긴 것들 중, "유저에게 맞는 데이터만 불러와서 (find)"
+// 3) 불러온 Array 로, allFoodData 를, for, find 처리해서, 값을 남긴다.
 
 import FoodList from "../food-components/food-list";
 import styles from "./favorite-foods.module.css";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 
-function Favorites() {
+function Favorites(props) {
   const { data: session, status } = useSession();
-  const [favoritesData, setFavoritesData] = useState([]);
+  const { allFoods, allFavoriteFoods } = props; // 모든데이터와, 모든 Favoites 데이터를 가져와서
+  const [favoritesData, setFavoritesData] = useState([]); // 각 유저의, 최종 Favorite Food Data
 
   useEffect(() => {
-    fetch("/api/userdetail/favorite-food-for-user", {
-      method: "POST",
-      body: JSON.stringify({ useEmail: session.user.email }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setFavoritesData(data.favorites));
-  }, []);
+    if (status === "authenticated") {
+      const userFavoriteFoodArray = allFavoriteFoods.find(
+        (food) => food.userEmail == session.user.email
+      );
 
-  // 직접 여기에서, 값을 찾아서, Foodlist 로 넘긴다.
-  // 값을 찾는것은 API 를 통해서, FETCH
+      let favorites = [];
+      if (userFavoriteFoodArray) {
+        for (const foodid of userFavoriteFoodArray.foodArray) {
+          const result = allFoods.find((food) => food.id === foodid);
+          favorites.push(result);
+        }
+      }
+      setFavoritesData(favorites);
+    }
+  }, [status]);
 
   return (
     <main className={styles.maindiv}>

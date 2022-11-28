@@ -1,7 +1,6 @@
 import Button from "../ui/card/button";
 import FoodDetailForm from "../food-detail-components/food-detail-form";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import styles from "./random-select.module.css";
 
 function RandomSelectComponent(props) {
