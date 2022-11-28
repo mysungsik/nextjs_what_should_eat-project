@@ -32,7 +32,7 @@ function FavoriteFoodsPage(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const client = await connectDb();
   const allFoods = await findAllFoods(client);
   const allFavoriteFoods = await allFavoriteFoodArray(client);
