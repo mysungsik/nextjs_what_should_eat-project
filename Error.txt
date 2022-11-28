@@ -427,5 +427,5 @@
 
     <해결>
         
-        방법1. revalidate 옵션을 넣어준다.
+        방법1. revalidate 옵션을 넣어준다. "내음식 페이지" 에는 "reavalidate" 를 1로 설정해보았음
         방법2. getServerSideProps 로 페칭을 진행한다.
