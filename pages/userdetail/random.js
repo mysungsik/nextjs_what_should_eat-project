@@ -35,7 +35,7 @@ function RandomSelectPageForUser(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const client = await connectDb();
   const allFoods = await findAllFoods(client);
   const allFavoriteFoods = await allFavoriteFoodArray(client);
@@ -50,6 +50,7 @@ export async function getServerSideProps() {
       allFoods: allFoodsEscapeIssue,
       allFavoriteFoods: allFavoriteFoodsEscapeIssue,
     },
+    revalidate: 0.1,
   };
 }
 

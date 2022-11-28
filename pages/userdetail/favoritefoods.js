@@ -47,7 +47,7 @@ export async function getStaticProps() {
       allFoods: allFoodsEscapeIssue,
       allFavoriteFoods: allFavoriteFoodsEscapeIssue,
     },
-    revalidate: 1,
+    revalidate: 0.1,
   };
 }
 
