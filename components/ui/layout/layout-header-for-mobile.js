@@ -37,12 +37,17 @@ function LayoutHeaderForMobile(props) {
   return (
     <header className={styles.headerForMobile}>
       <ul className={styles.ul}>
-        <li>
+        <li className={styles.logo}>
           <Link href={"/"}>
-            <h1>Logo</h1>
+            <Image
+              src={"/image/layout-header/icons8-chicken-box-64.png"}
+              width={80}
+              height={80}
+              alt={"logo"}
+            />
           </Link>
         </li>
-        <li onClick={showModal}>
+        <li onClick={showModal} className={styles.hamburgerBtn}>
           <Image
             src={"/image/layout-header/icons8-hamburger-50.png"}
             alt={"ham"}

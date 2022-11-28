@@ -7,9 +7,14 @@ function LayoutFooter(props) {
     <footer className={styles.footer}>
       <ul className={styles.ul}>
         <div className={styles.innerSite}>
-          <li>
+          <li className={styles.logo}>
             <Link href={"/"}>
-              <h1>Logo</h1>
+              <Image
+                src={"/image/layout-header/icons8-chicken-box-64.png"}
+                width={80}
+                height={80}
+                alt={"logo"}
+              />
             </Link>
           </li>
           <li className={styles.howToUse}>

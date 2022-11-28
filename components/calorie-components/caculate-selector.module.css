@@ -38,6 +38,9 @@
 .category li {
   margin: 0.5rem 0;
 }
+.category li:hover {
+  cursor: pointer;
+}
 .subSelector {
   max-height: 23rem;
   margin: 0;
@@ -46,6 +49,10 @@
 .subSelector li {
   margin: 0.5rem 0;
 }
+.subSelector li:hover {
+  cursor: pointer;
+}
+
 .calculator {
   padding: 1rem;
   border-radius: 5px;

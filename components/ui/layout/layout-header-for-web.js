@@ -5,6 +5,7 @@ import { signOut } from "next-auth/react";
 import { useState } from "react";
 import DropDown from "./layout-dropdown";
 import UserDropDown from "./layout-user-dropdown";
+import Image from "next/image";
 
 function LayoutHeaderForWeb(props) {
   const { data: session, status } = useSession();
@@ -37,9 +38,14 @@ function LayoutHeaderForWeb(props) {
   return (
     <div>
       <header className={styles.headerForWeb}>
-        <div>
+        <div className={styles.logo}>
           <Link href={"/"}>
-            <h1> Logo</h1>
+            <Image
+              src={"/image/layout-header/icons8-chicken-box-64.png"}
+              width={70}
+              height={70}
+              alt={"logo"}
+            />
           </Link>
         </div>
         <ul>

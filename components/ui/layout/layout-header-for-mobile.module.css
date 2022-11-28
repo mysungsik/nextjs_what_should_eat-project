@@ -73,3 +73,32 @@
   border: none;
   color: white;
 }
+
+.logo {
+  width: 3rem;
+  margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.logo a {
+  width: 3rem;
+  margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.logo img {
+  width: 70px;
+  height: 70px;
+  background-color: rgb(0, 0, 0);
+  object-position: 4px -5px;
+}
+
+.hamburgerBtn {
+  width: 3rem;
+  margin-right: 2rem;
+}
+.hamburgerBtn:hover {
+  cursor: pointer;
+}

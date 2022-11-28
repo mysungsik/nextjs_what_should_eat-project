@@ -438,3 +438,8 @@
                 revalidate 는 "자연수여야한다."
 
             ==> 1 이 최고치이다..
+
+    < 최종 >
+
+        "내음식" 페이지는 어쩔수 없이, "getServerSideProps" 로 하고
+        " 랜덤선택기" 페이지는 "getStaticProps" 에 "revalidate" 1로 한다.

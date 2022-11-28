@@ -32,7 +32,7 @@ function FavoriteFoodsPage(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const client = await connectDb();
   const allFoods = await findAllFoods(client);
   const allFavoriteFoods = await allFavoriteFoodArray(client);
@@ -47,7 +47,6 @@ export async function getStaticProps() {
       allFoods: allFoodsEscapeIssue,
       allFavoriteFoods: allFavoriteFoodsEscapeIssue,
     },
-    revalidate: 1,
   };
 }
 
