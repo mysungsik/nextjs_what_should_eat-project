@@ -17,7 +17,6 @@ function ChangePassword(props) {
 
     const patchPassword = { useremail, currentPassword, newPassword };
 
-    console.log(patchPassword);
     const response = await fetch("/api/userdetail/change-password", {
       method: "PATCH",
       body: JSON.stringify(patchPassword),
@@ -41,7 +40,10 @@ function ChangePassword(props) {
         <input type={"password"} id={"currentPassword"} ref={currentRef} />
       </div>
       <div>
-        <label htmlFor="newPassword" className={styles.newpassword}> 변경할 비밀번호</label>
+        <label htmlFor="newPassword" className={styles.newpassword}>
+          {" "}
+          변경할 비밀번호
+        </label>
         <input type={"password"} id={"newPassword"} ref={newRef} />
       </div>
       <div className={styles.buttondiv}>
