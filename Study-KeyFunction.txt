@@ -173,7 +173,7 @@
                 }
             
                 const oldFoodArray = findResult.foodArray;                      // "있다면" ,그 data 안에 있는 foodArray를 꺼낸 후,
-                                                                                // 현재 넣으려고 하는 foodId가 있는지 확인한다..
+                                                                                // 현재 넣으려고 하는 foodId가 있는지 확인한다.
                 const sameInArray = oldFoodArray.find((id) => id === foodId);
 
                 if (!sameInArray) {
@@ -269,3 +269,29 @@
                     const filterd = foodData.filter((food) => food.category.includes(category));
                     setFilterdData(filterd);
                 }
+
+5. 유저별 random
+
+const [favoritesData, setFavoritesData] = useState([]); // 모든 찜한 음식들의 데이터
+const [showFood, setShowFood] = useState(false); // 랜덤! 버튼을 누르면 나올 모듈
+const [noData, setNoData] = useState(false); // 데이터가 없다면, 나올 모듈
+
+useEffect(() => {
+  if (status === "authenticated") {
+    const userFavoriteFoodArray = allFavoriteFoods.find(
+      (food) => food.userEmail == session.user.email
+    );
+
+    let favorites = [];
+
+    if (userFavoriteFoodArray) {
+      for (const foodid of userFavoriteFoodArray.foodArray) {
+        const result = allFoods.find((food) => food.id === foodid);
+        favorites.push(result);
+      }
+    }
+    setFavoritesData(favorites);
+  }
+}, [status]);
+
+let randomNumber;

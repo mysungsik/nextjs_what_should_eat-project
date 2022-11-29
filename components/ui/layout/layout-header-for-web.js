@@ -82,7 +82,7 @@ function LayoutHeaderForWeb(props) {
             <Link href={"/calories"}> 칼로리계산기</Link>
           </li>
           <li className={styles.li}>
-            <Link href={"contact"}> Contact</Link>
+            <Link href={"/contact"}> Contact</Link>
           </li>
           {status === "authenticated" && (
             <li className={styles.li}>

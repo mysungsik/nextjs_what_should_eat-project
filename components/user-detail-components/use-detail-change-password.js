@@ -41,7 +41,6 @@ function ChangePassword(props) {
       </div>
       <div>
         <label htmlFor="newPassword" className={styles.newpassword}>
-          {" "}
           변경할 비밀번호
         </label>
         <input type={"password"} id={"newPassword"} ref={newRef} />
