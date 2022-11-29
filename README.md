@@ -39,7 +39,7 @@
 ### &#129372; 로그인 및 회원가입
 
 <hr>
-<img src="/public/image/readme/login.jpg" style="width:500px height:800px" >
+<img src="/public/image/readme/login.jpg" style="width:200px; height:400px;" >
 <img src="/image/readme/signup.jpg" width="500" height="800">
 <br>
 
