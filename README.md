@@ -50,6 +50,9 @@
 - 서버는 받은 토큰을 검증하고 응답
 - Provider는 next-auth의 Credential Provider 로, 직접 적은 로그인 인증 로직을 활용하여 토큰 발급
 
+<br>
+<br>
+
 ### &#129372; 메인페이지
 
 <hr>
@@ -59,6 +62,50 @@
 - swiper API 를 통해, 회전하는 큐브 형태의 메인 페이지를 만들었습니다.
 - 모든 음식, 랜덤 선택기, 칼로리 계산기, 컨택트 페이지
 - Footer 의 HowtoUse 를 보면 페이지의 사용법이 간략히 나와있습니다.
+
+```js
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-cube";
+import "swiper/css/pagination";
+import { EffectCube, Pagination } from "swiper";
+
+function HompageSlider() {
+  return (
+    <div className={styles.maindiv}>
+      <h1> WHAT are U eating today?</h1>
+      <Swiper
+        className={styles.slider}
+        effect={"cube"}
+        grabCursor={true}
+        cubeEffect={{
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94,
+        }}
+        pagination={true}
+        modules={[EffectCube, Pagination]}
+      >
+        <SwiperSlide>
+          <Link href={"/allfoods"}>
+            <Image
+              src={
+                "/image/homepage-slider/brooke-lark-wMzx2nBdeng-unsplash-fix.jpg"
+              }
+              width={2000}
+              height={1500}
+              alt={"allfoods"}
+              priority
+            />
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide>
+        
+```
+<br>
+<br>
 
 ### &#129372; 전체 음식
 
@@ -105,6 +152,9 @@
   }
 ```
 
+<br>
+<br>
+
 ### &#129372; 랜덤 선택기
 
 <hr>
@@ -123,6 +173,9 @@ function randomSelect() {
   setShowFood(true);
 }
 ```
+
+<br>
+<br>
 
 ### &#129372; 칼로리 계산기
 
@@ -165,6 +218,9 @@ function calculate(e) {
   setTotalCalorie(Math.ceil(totalCalories));
 }
 ```
+
+<br>
+<br>
 
 ### &#129372; 로그인 후 찜하기, 찜한 음식 목록
 
@@ -260,6 +316,9 @@ function calculate(e) {
 
 ```
 
+<br>
+<br>
+
 ### &#129372; 찜한 음식 랜덤 선택기
 
 <hr>
@@ -300,6 +359,9 @@ function RandomSelectComponent(props) {
     ...
 
 ```
+
+<br>
+<br>
 
 ### &#129372; 비밀번호 변경
 
@@ -414,6 +476,9 @@ async function handler(req, res) {
   }
   client.close();
 ```
+
+<br>
+<br>
 
 ### &#129372; 컨택트
 
