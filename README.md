@@ -15,7 +15,7 @@
 매일하는 고민들을 조금이나마 해결하기 위해서 만든 애플리케이션
 <br><br>
 
-**데모** : https://nextjs-personal-project-eamxz86yh-mysungsik.vercel.app/
+**데모** : https://nextjs-personal-project-77n2ig86w-mysungsik.vercel.app/
 <br><br>
 
 ## &#127828; 사용 기술
