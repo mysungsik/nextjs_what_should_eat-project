@@ -63,7 +63,7 @@
 ### &#129372; 전체 음식
 
 <hr>
-<img src="/public/image/readme/allfood.jpg" style="width:500px"; style="height:800px";>
+<img src="/public/image/readme/allfood.jpg" style="width:800px"; style="height:500px";>
 <br>
 
 - Header 의 "뭐먹지" 에 가면, "카테고리별, 태그별" 로 정리된 모든 음식들이 나와있습니다.
