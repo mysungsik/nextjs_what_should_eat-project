@@ -53,7 +53,7 @@
 ### &#129372; 메인페이지
 
 <hr>
-<img src="/image/readme/mainpage.jpg" width="500" height="800">
+<img src="/image/readme/mainpage.jpg" width="250px" height="400px">
 <br>
 
 - swiper API 를 통해, 회전하는 큐브 형태의 메인 페이지를 만들었습니다.
