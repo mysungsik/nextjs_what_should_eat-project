@@ -39,8 +39,8 @@
 ### &#129372; 로그인 및 회원가입
 
 <hr>
-<img src="/public/image/readme/login.jpg" style="width:200px"; style="height:400px"; >
-<img src="/image/readme/signup.jpg" width="500" height="800">
+<img src="/public/image/readme/login.jpg" style="width:500px"; style="height:800px"; >
+<img src="/public/image/readme/signup.jpg" style="width:500px"; style="height:800px";>
 <br>
 
 - fetch 를 통해, 적절한 검증 후 DB에 정보 저장
@@ -63,7 +63,7 @@
 ### &#129372; 전체 음식
 
 <hr>
-<img src="/image/readme/allfood.jpg" width="500" height="800">
+<img src="/public/image/readme/allfood.jpg" style="width:500px"; style="height:800px";>
 <br>
 
 - Header 의 "뭐먹지" 에 가면, "카테고리별, 태그별" 로 정리된 모든 음식들이 나와있습니다.
@@ -108,8 +108,8 @@
 ### &#129372; 랜덤 선택기
 
 <hr>
-<img src="/image/readme/random1.jpg" width="500" height="800">
-<img src="/image/readme/random2.jpg" width="500" height="800">
+<img src="/public/image/readme/random1.jpg" style="width:500px"; style="height:800px";>
+<img src="/public/image/readme/random2.jpg" style="width:500px"; style="height:800px";>
 <br>
 
 - 모든 음식들 중, 랜덤으로 하나를 뽑아드립니다.
@@ -127,8 +127,8 @@ function randomSelect() {
 ### &#129372; 칼로리 계산기
 
 <hr>
-<img src="/image/readme/calorie-web.jpg" width="500" height="800">
-<img src="/image/readme/calorie-mobile.jpg" width="300" height="600">
+<img src="/public/image/readme/calorie-web.jpg" style="width:500px"; style="height:800px";>
+<img src="/public/image/readme/calorie-mobile.jpg" style="width:300px"; style="height:600px";>
 <br>
 
 - 각 음식을 카테고리별로 정리, 카테고리를 누르면, 그에 해당하는 음식들을 나열하고
@@ -167,8 +167,8 @@ function calculate(e) {
 ### &#129372; 로그인 후 찜하기, 찜한 음식 목록
 
 <hr>
-<img src="/image/readme/user-zzim1.jpg" width="400" height="500">
-<img src="/image/readme/user-zzim2.jpg" width="500" height="800">
+<img src="/public/image/readme/user-zzim1.jpg" style="width:400px"; style="height:500px";>
+<img src="/public/image/readme/user-zzim2.jpg" style="width:500px"; style="height:800px";>
 <br>
 - 로그인을 하게되면, 각 유저별로, 다른 찜 목록을 가지게됩니다.
 - 찜한 음식들은, "내음식" 페이지에서 모든 찜한 음식을 보거나, "유저별 랜덤 선택기" 페이지에서 찜한 음식으로, 랜덤 선택을 할 수 있습니다.
@@ -256,8 +256,8 @@ function calculate(e) {
 ### &#129372; 찜한 음식 랜덤 선택기
 
 <hr>
-<img src="/image/readme/user-random1.JPG" width="500" height="550">
-<img src="/image/readme/user-random2.jpg" width="500" height="550">
+<img src="/public/image/readme/user-random1.JPG" style="width:500px"; style="height:550px";>
+<img src="/public/image/readme/user-random2.jpg" style="width:500px"; style="height:550px";>
 <br>
 - 찜한 음식들을 가지고, 랜덤 선택을 할 수 있습니다.
 - 찜한 음식들의 DB에는, 음식들의 id만 Array 형태로 저장되어 있기에, for 과 .find() 를 통해 적절한 Data 를 가진 Array 로 변환시켜줍니다.
@@ -295,8 +295,8 @@ function RandomSelectComponent(props) {
 ### &#129372; 비밀번호 변경
 
 <hr>
-<img src="/image/readme/user-changepw1.JPG" width="500" height="550">
-<img src="/image/readme/user-changepw2.JPG" width="500" height="550">
+<img src="/public/image/readme/user-changepw1.JPG" style="width:500px"; style="height:550px";>
+<img src="/public/image/readme/user-changepw2.JPG" style="width:500px"; style="height:550px";>
 <br>
 
 - 비밀번호를 변경 할 수 있습니다.
@@ -409,7 +409,7 @@ async function handler(req, res) {
 ### &#129372; 컨택트
 
 <hr>
-<img src="/image/readme/contact.jpg" width="500" height="500">
+<img src="/public/image/readme/contact.jpg"style="width:500px"; style="height:500px";>
 <br>
 
 - 컨택트 페이지를 통해 Contact 를 할 수 있습니다.
