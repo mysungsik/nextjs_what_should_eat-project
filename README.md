@@ -127,8 +127,10 @@ function randomSelect() {
 ### &#129372; 칼로리 계산기
 
 <hr>
+
 <img src="/public/image/readme/calorie-web.jpg" style="width:500px"; style="height:800px";>
 <img src="/public/image/readme/calorie-mobile.jpg" style="width:300px"; style="height:600px";>
+
 <br>
 
 - 각 음식을 카테고리별로 정리, 카테고리를 누르면, 그에 해당하는 음식들을 나열하고
@@ -167,11 +169,17 @@ function calculate(e) {
 ### &#129372; 로그인 후 찜하기, 찜한 음식 목록
 
 <hr>
+
 <img src="/public/image/readme/user-zzim1.jpg" style="width:400px"; style="height:500px";>
 <img src="/public/image/readme/user-zzim2.jpg" style="width:500px"; style="height:800px";>
+
 <br>
+
 - 로그인을 하게되면, 각 유저별로, 다른 찜 목록을 가지게됩니다.
+
 - 찜한 음식들은, "내음식" 페이지에서 모든 찜한 음식을 보거나, "유저별 랜덤 선택기" 페이지에서 찜한 음식으로, 랜덤 선택을 할 수 있습니다.
+- 
+<br>
 
 **<로직>**
 
@@ -259,9 +267,11 @@ function calculate(e) {
 <img src="/public/image/readme/user-random1.JPG" style="width:500px"; style="height:550px";>
 <img src="/public/image/readme/user-random2.jpg" style="width:500px"; style="height:550px";>
 <br>
+
 - 찜한 음식들을 가지고, 랜덤 선택을 할 수 있습니다.
 - 찜한 음식들의 DB에는, 음식들의 id만 Array 형태로 저장되어 있기에, for 과 .find() 를 통해 적절한 Data 를 가진 Array 로 변환시켜줍니다.
-
+- 
+<br>
 ```js
 function RandomSelectComponent(props) {
 
