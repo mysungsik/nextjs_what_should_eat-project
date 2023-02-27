@@ -1,16 +1,14 @@
 # &#127829;오늘 뭐먹지?
 
 <hr style="border: solid 2px black;">
-<br>
 
 ## &#127828;서비스소개
 
 <hr style="border: solid 1px black;">
-<br>
 
 매일 고민하는 **"오늘 점심 뭐먹지? 오늘 저녁 어떻게 하지"?**
 
-<br/><br/>
+<br/>
 
 매일하는 고민들을 조금이나마 해결하기 위해서 만든 애플리케이션
 <br><br>
@@ -21,6 +19,7 @@
 ## &#127828; 사용 기술
 
 <hr style="border: solid 1px black;">
+<p>
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black" style="border-radius:10px">
 <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" style="border-radius:10px">
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white" style="border-radius:10px">
@@ -29,8 +28,30 @@
 <img src="https://img.shields.io/badge/Swiper-6332F6 ?style=for-the-badge&logo=Swiper&logoColor=white" style="border-radius:10px">
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white" style="border-radius:10px">
 <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white" style="border-radius:10px">
+</p>
 
 <br>
+
+#### 기타라이브러리 및 API
+
+```
+next-auth
+```
+
+<hr>
+
+### 주요 버전정보
+
+```js
+    react : v18.2.0
+    nextjs : v13.0.3
+    next-auth : v4.16.4
+    mongodb : v4.12.0
+    swiper: ^8.4.4
+    bootstrap: ^5.2.2
+```
+
+<hr>
 
 ## &#127828;주요 기능
 
@@ -39,8 +60,12 @@
 ### &#129372; 로그인 및 회원가입
 
 <hr>
-<img src="/public/image/readme/login.jpg" style="width:500px"; style="height:800px"; >
-<img src="/public/image/readme/signup.jpg" style="width:500px"; style="height:800px";>
+
+<p>
+<img src="/public/image/readme/login.jpg" style="width:300px"; style="height:480px"; >
+<img src="/public/image/readme/signup.jpg" style="width:300px"; style="height:480px"; > 
+</p>
+
 <br>
 
 - fetch 를 통해, 적절한 검증 후 DB에 정보 저장
@@ -56,7 +81,7 @@
 ### &#129372; 메인페이지
 
 <hr>
-<img src="/public/image/readme/mainpage.jpg" width="800px" height="500px">
+<img src="/public/image/readme/mainpage.jpg" style="width:480px"; style="height:300px"; >
 <br>
 
 - swiper API 를 통해, 회전하는 큐브 형태의 메인 페이지를 만들었습니다.
@@ -102,15 +127,16 @@ function HompageSlider() {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-        
+
 ```
+
 <br>
 <br>
 
 ### &#129372; 전체 음식
 
 <hr>
-<img src="/public/image/readme/allfood.jpg" style="width:800px"; style="height:500px";>
+<img src="/public/image/readme/allfood.jpg" style="width:480px"; style="height:300px"; >
 <br>
 
 - Header 의 "뭐먹지" 에 가면, "카테고리별, 태그별" 로 정리된 모든 음식들이 나와있습니다.
@@ -158,8 +184,12 @@ function HompageSlider() {
 ### &#129372; 랜덤 선택기
 
 <hr>
-<img src="/public/image/readme/random1.jpg" style="width:500px"; style="height:800px";>
-<img src="/public/image/readme/random2.jpg" style="width:500px"; style="height:800px";>
+
+<p>
+<img src="/public/image/readme/random1.jpg" style="width:30px"; style="height:480px"; >
+<img src="/public/image/readme/random2.jpg" style="width:30px"; style="height:480px"; >
+</p>
+
 <br>
 
 - 모든 음식들 중, 랜덤으로 하나를 뽑아드립니다.
@@ -181,8 +211,10 @@ function randomSelect() {
 
 <hr>
 
-<img src="/public/image/readme/calorie-web.jpg" style="width:500px"; style="height:800px";>
-<img src="/public/image/readme/calorie-mobile.jpg" style="width:300px"; style="height:600px";>
+<p>
+<img src="/public/image/readme/calorie-web.jpg" style="width:300px"; style="height:480px"; >
+<img src="/public/image/readme/calorie-mobile.jpg" style="width:300px"; style="height:500px"; >
+</p>
 
 <br>
 
@@ -226,8 +258,10 @@ function calculate(e) {
 
 <hr>
 
-<img src="/public/image/readme/user-zzim1.jpg" style="width:400px"; style="height:500px";>
-<img src="/public/image/readme/user-zzim2.jpg" style="width:500px"; style="height:800px";>
+<p>
+<img src="/public/image/readme/user-zzim1.jpg" style="width:300px"; style="height:350px";>
+<img src="/public/image/readme/user-zzim2.jpg" style="width:300px"; style="height:480px";>
+</p>
 
 <br>
 
@@ -322,13 +356,17 @@ function calculate(e) {
 ### &#129372; 찜한 음식 랜덤 선택기
 
 <hr>
-<img src="/public/image/readme/user-random1.JPG" style="width:500px"; style="height:550px";>
-<img src="/public/image/readme/user-random2.jpg" style="width:500px"; style="height:550px";>
+
+<p>
+<img src="/public/image/readme/user-random1.JPG" style="width:300px"; style="height:330px";>
+<img src="/public/image/readme/user-random2.jpg" style="width:300px"; style="height:330px";>
+</p>
+
 <br>
 
 - 찜한 음식들을 가지고, 랜덤 선택을 할 수 있습니다.
 - 찜한 음식들의 DB에는, 음식들의 id만 Array 형태로 저장되어 있기에, for 과 .find() 를 통해 적절한 Data 를 가진 Array 로 변환시켜줍니다.
-<br>
+  <br>
 
 ```js
 function RandomSelectComponent(props) {
@@ -366,8 +404,11 @@ function RandomSelectComponent(props) {
 ### &#129372; 비밀번호 변경
 
 <hr>
-<img src="/public/image/readme/user-changepw1.JPG" style="width:500px"; style="height:550px";>
-<img src="/public/image/readme/user-changepw2.JPG" style="width:500px"; style="height:550px";>
+<p>
+  <img src="/public/image/readme/user-changepw1.JPG" style="width:300px"; style="height:330px";>
+<img src="/public/image/readme/user-changepw2.JPG" style="width:300px"; style="height:330px";>
+</p>
+
 <br>
 
 - 비밀번호를 변경 할 수 있습니다.
@@ -483,7 +524,7 @@ async function handler(req, res) {
 ### &#129372; 컨택트
 
 <hr>
-<img src="/public/image/readme/contact.jpg"style="width:500px"; style="height:500px";>
+<img src="/public/image/readme/contact.jpg" style="width:300px"; style="height:330px";>
 <br>
 
 - 컨택트 페이지를 통해 Contact 를 할 수 있습니다.
